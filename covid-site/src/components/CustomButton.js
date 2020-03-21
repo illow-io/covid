@@ -1,8 +1,9 @@
 import React from 'react';
 import { Box, Text } from 'grommet';
 
-export default ({ text, size = "large", primary, secondary, inverted, onClick}) => {
+export default ({ text, size = "large", icon, primary, secondary, inverted, ...props}) => {
   let background, textColor, textWeight;
+  const pad = size === "large" ? "22px" : "15px";
 
   if (primary) {
     background = "linear-gradient(270deg, #3b219e, #a54792)";
@@ -19,7 +20,8 @@ export default ({ text, size = "large", primary, secondary, inverted, onClick}) 
   }
 
   return (
-    <Box onClick={onClick} background={background} pad="22px" align="center" justify="center" round="small">
+    <Box hoverIndicator background={background} pad={pad} align="center" justify="center" round="small" direction="row" gap="small" {...props}>
+      {icon}
       <Text color={textColor} size={size} weight={textWeight}>{text}</Text>
     </Box>
   );
