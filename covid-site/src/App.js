@@ -7,7 +7,7 @@ import Loader from './components/Loader';
 
 function App() {
   return (
-    <Grommet theme={theme}>
+    <Grommet theme={theme} full>
       <Suspense fallback={<Loader />}>
         <Home />
       </Suspense>
