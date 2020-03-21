@@ -1,24 +1,17 @@
 import React from 'react';
 import { Box, Heading, Header } from "grommet";
-import use from '../state/use';
+import { useTranslation } from 'react-i18next';
 
 export default () => {
-  const user = use('user')[0];
-  
+  const { t } = useTranslation();
+
   return (
-    <Header background="light-4" pad="small">
-      <Heading level={3} size="medium">
-        Data For Humanity
+    <Header background="light-2" pad="medium" align="center" justify="center">
+      <Heading level={5} color="dark-5" margin="none" size="small" style={{ display: "flex", alignItems: "center" }}>
+        {t('SITE_TITLE_1')}
+        <img src="/logo.png" alt="logo" style={{ width: "34pt", height: "auto", marginHorizontal: "10px" }} />
+        {t('SITE_TITLE_2')}
       </Heading>
-  
-      {(user) && (
-        <Box
-        height="xxsmall"
-        width="xxsmall"
-        round="full"
-        background={`url(${user.imageUrl})`}
-        />
-      )}
     </Header>
   );
 };
