@@ -1,21 +1,28 @@
-const save = data => {
-  db.save(data);
-};
+import db from './mockDb';
 
-const update = (id, data) => {
-  db.update(id, data);
-};
+class DataModel {
+  constructor(db) {
+    this.db = db;
+  }
+  async save(data) {
+    return db.save(data);
+  }
 
-const remove = id => {
-  db.remove(id);
-};
+  async update(id, data) {
+    db.update(id, data);
+  }
 
-const get = () => {
-  db.getAll();
-};
+  async remove(id) {
+    db.remove(id);
+  }
 
-const getById = id => {
-  db.get(id);
-};
+  async get() {
+    db.getAll();
+  }
 
-export { save, update, get, remove, getById };
+  async getById(id) {
+    db.get(id);
+  }
+}
+
+export default new DataModel(db);
