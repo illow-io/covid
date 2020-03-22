@@ -54,6 +54,12 @@ const config = convict({
         default: 100 * 1024 * 1024
       }
     }
+  },
+  googleClientId: {
+    doc: 'The google client Id',
+    format: String,
+    default: 'wJalrXUtnFEMI-K7MDENG/bPxdfadLEKEY',
+    env: 'GOOGLE_CLIENT_ID'
   }
 });
 
