@@ -31,6 +31,8 @@ const SignIn = () => {
     <Grid pad="large" gap="large">
       <Heading level={3} margin={{ horizontal: "30px", bottom: "none" }} size="medium" textAlign="center">{t('SIGNIN_TITLE')}</Heading>
 
+      <Text textAlign="center" size="16px" color="dark-5">{t('PRIVACY_PROMISE')}</Text>
+
       <Box>
         <GoogleLogin
           clientId={Config.googleClientId}
@@ -48,7 +50,6 @@ const SignIn = () => {
           )}
           onSuccess={onSuccess}
           onFailure={onFailure}
-          isSignedIn={true}
         />
       </Box>
     </Grid>
