@@ -20,35 +20,35 @@ const Enrich = () => {
       "id": "dontHave",
       "name": "dontHave",
       "value": "dontHave",
-      "label": "I don\'t have COVID-19"
+      "label": t("DONT_HAVE_COVID")
     },
     {
       "disabled": false,
       "id": "mayHave",
       "name": "mayHave",
       "value": "mayHave",
-      "label": "I may have COVID-19"
+      "label": t('MAY_HAVE_COVID')
     },
     {
       "disabled": false,
       "id": "Have",
       "name": "Have",
       "value": "Have",
-      "label": "I have COVID-19 since"
+      "label": t('HAVE_COVID')
     },
     {
       "disabled": false,
       "id": "Had",
       "name": "Had",
       "value": "Had",
-      "label": "I had COVID-19"
+      "label": t('HAD_COVID')
     },
     {
       "disabled": false,
       "id": "N/A",
       "name": "N/A",
       "value": "N/A",
-      "label": "I prefer not to say"
+      "label": t('NO_SAY')
     }
   ];
 
@@ -74,10 +74,10 @@ const Enrich = () => {
       <Box pad="large" style={{backgroundColor: '#e8e7e7'}}>
         <div style={{backgroundColor: 'white', borderRadius: 10}}>
           <div className="CovidBanner" style={{padding: '30px 20px', textAlign: 'center', borderRadius: '10px 10px 0px 0px'}}>
-            <Text color="white">{t('For the first time people from all the world are in the same cause. We can all help to save lives')}</Text>
+            <Text color="white">{t('ENRICH_TITLE')}</Text>
           </div>
           <div style={{padding: 20}}>
-            <Text style={{marginBottom: 15, fontSize: 14, display: 'block'}}>{t('Please select your status to enrich location map to others can get accurate info.')}</Text>
+            <Text style={{marginBottom: 15, fontSize: 14, display: 'block'}}>{t('ENRICH_SUBTITLE')}</Text>
             <RadioButtonGroup
               className="RadioIsCovidGroup"
               name="CovidStatus"
@@ -88,7 +88,7 @@ const Enrich = () => {
           </div>
 
           {input && 
-            <FormField style={{padding: 10}} className="LabelTimeSinceCovid" label={t('Since when you think you have Covid?')}>
+            <FormField style={{padding: 10}} className="LabelTimeSinceCovid" label={t('ENRICH_QUESTION_DATE')}>
               <TextInput 
                 type="date" 
                 value={dateSince} 
@@ -97,17 +97,17 @@ const Enrich = () => {
           }
 
         </div>
-        <Text style={privacyStyle}>{t('This will be protected by privacy & terms of use')}</Text>
+        <Text style={privacyStyle}>{t('TERMS_AND_CONDITIONS')}</Text>
         <LearnMore linkUrl="/enrich" />
       </Box>
       <Footer pad="medium" style={{display: 'block'}}>
         <CustomButton 
           send 
           style={{marginBottom: 10}} 
-          text={t("Send")} 
+          text={t("BUTTON_SEND_LABEL")} 
           onClick={onSendCovidStatusHandler}
         />
-        <CustomButton skip text={t("Skip")} onClick={() => history.push("/score")} />
+        <CustomButton skip text={t("BUTTON_SKIP_LABEL")} onClick={() => history.push("/score")} />
       </Footer>
     </>
   );
