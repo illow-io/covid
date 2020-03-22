@@ -2,8 +2,8 @@ import AWS from 'aws-sdk';
 import config from '../config';
 
 AWS.config.update({
-  region: config.aws.region,
-  endpoint: config.aws.endpoint
+  region: config.get('aws.region'),
+  endpoint: config.get('aws.endpoint')
 });
 
 const dynamodb = new AWS.DynamoDB();

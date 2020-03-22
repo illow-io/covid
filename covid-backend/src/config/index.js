@@ -37,10 +37,30 @@ const config = convict({
     }
   },
   aws: {
-    region: env.AWS_REGION || 'eu-west-2',
-    endpoint: env.AWS_ENDPOINT || 'http://localhost:8000',
-    accessKeyID: env.AWS_ACCESS_KEY_ID || 'AKIAIOSFODNN7EXAMPLE',
-    secretAccessKey: env.AWS_SECRET_ACCESS_KEY || 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
+    region: {
+      doc: 'AWS region',
+      format: String,
+      default: 'eu-west-2',
+      env: 'AWS_REGION'
+    },
+    endpoint: {
+      doc: 'AWS endpoint',
+      format: String,
+      default: 'http://localhost:6000',
+      env: 'AWS_ENDPOINT'
+    },
+    accessKeyID: {
+      doc: 'AWS access key ID',
+      format: String,
+      default: 'AKIAIOSFODNN7EXAMPLE',
+      env: 'AWS_ACCESS_KEY_ID'
+    },
+    secretAccessKey: {
+      doc: 'AWS secret access key',
+      format: String,
+      default: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
+      env: 'AWS_SECRET_ACCESS_KEY'
+    }
   }
 });
 
