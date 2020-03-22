@@ -20,21 +20,28 @@ const Enrich = () => {
       "id": "dontHave",
       "name": "dontHave",
       "value": "dontHave",
-      "label": "I don\'t have Covid"
+      "label": "I don\'t have COVID-19"
     },
     {
       "disabled": false,
       "id": "mayHave",
       "name": "mayHave",
       "value": "mayHave",
-      "label": "I may have Covid"
+      "label": "I may have COVID-19"
     },
     {
       "disabled": false,
       "id": "Have",
       "name": "Have",
       "value": "Have",
-      "label": "I have Covid since"
+      "label": "I have COVID-19 since"
+    },
+    {
+      "disabled": false,
+      "id": "Had",
+      "name": "Had",
+      "value": "Had",
+      "label": "I had COVID-19"
     },
     {
       "disabled": false,
@@ -49,7 +56,7 @@ const Enrich = () => {
 
   const onChangeRadioButtonHandler = event => {
     setValue(event.target.value);
-    event.target.value === 'mayHave' || event.target.value === 'Have' ? setInput(true) : setInput(false);
+    event.target.value === 'Had' || event.target.value === 'Have' ? setInput(true) : setInput(false);
   }
 
   const onChangeDateHandler = event => setDateSince(event.target.value);
