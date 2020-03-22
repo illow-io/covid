@@ -1,4 +1,4 @@
-import db from './mockDb';
+import db from './db';
 
 class DataModel {
   constructor(db) {
