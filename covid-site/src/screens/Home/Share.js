@@ -3,7 +3,7 @@ import { Box, Heading } from 'grommet';
 import { useTranslation } from 'react-i18next';
 import CustomButton from '../../components/CustomButton';
 
-const Steps = () => {
+const Share = () => {
   const { t } = useTranslation();
 
   return (
@@ -19,4 +19,4 @@ const Steps = () => {
   );
 };
 
-export default Steps;
+export default Share;
