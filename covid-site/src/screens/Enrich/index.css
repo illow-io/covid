@@ -1,3 +1,10 @@
 .LabelTimeSinceCovid label {
     font-size: 14px;
 }
+
+.CovidBanner {
+    background-image: url('/covid_background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-weight: bold;
+}
