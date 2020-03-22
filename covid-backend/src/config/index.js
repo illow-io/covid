@@ -35,6 +35,25 @@ const config = convict({
       format: String,
       default: env.npm_package_version
     }
+  },
+  upload: {
+    debug: {
+      doc: 'Show upload debug info',
+      format: Boolean,
+      default: true
+    },
+    path: {
+      doc: 'File upload path',
+      format: String,
+      default: 'tmp/uploads'
+    },
+    limits: {
+      fileSize: {
+        doc: 'Max file size',
+        format: Number,
+        default: 100 * 1024 * 1024
+      }
+    }
   }
 });
 

@@ -10,7 +10,7 @@ const app = express();
 app.use(boom());
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json({ limit: '100mb' })); // as config
+app.use(bodyParser.json());
 
 app.use(routes);
 app.use(notFoundHandler);

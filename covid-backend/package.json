@@ -11,20 +11,22 @@
     "start": "nodemon --exec babel-node src/index.js"
   },
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "convict": "^5.2.0",
-    "core-js": "^3.6.4",
-    "express": "^4.17.1",
-    "express-boom-v2": "^4.2.2",
-    "helmet": "^3.21.3",
-    "regenerator-runtime": "^0.13.5"
+    "body-parser": "1.19.0",
+    "convict": "5.2.0",
+    "core-js": "3.6.4",
+    "express": "4.17.1",
+    "express-boom-v2": "4.2.2",
+    "express-fileupload": "1.1.6",
+    "express-promise-router": "3.0.3",
+    "helmet": "3.21.3",
+    "regenerator-runtime": "0.13.5"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
+    "@babel/cli": "7.8.4",
     "@babel/core": "7.9.0",
-    "@babel/node": "^7.8.7",
-    "@babel/preset-env": "^7.9.0",
-    "nodemon": "^2.0.2",
+    "@babel/node": "7.8.7",
+    "@babel/preset-env": "7.9.0",
+    "nodemon": "2.0.2",
     "semistandard": "14.2.0"
   }
 }
