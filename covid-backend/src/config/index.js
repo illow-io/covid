@@ -35,6 +35,12 @@ const config = convict({
       format: String,
       default: env.npm_package_version
     }
+  },
+  aws: {
+    region: env.AWS_REGION || 'eu-west-2',
+    endpoint: env.AWS_ENDPOINT || 'http://localhost:8000',
+    accessKeyID: env.AWS_ACCESS_KEY_ID || 'AKIAIOSFODNN7EXAMPLE',
+    secretAccessKey: env.AWS_SECRET_ACCESS_KEY || 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
   }
 });
 
