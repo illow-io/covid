@@ -1,30 +1,17 @@
 import React, { useState } from 'react';
 import { Box, Grid, Heading, Text } from 'grommet';
 import { useTranslation } from 'react-i18next';
-import GoogleLogin from 'react-google-login';
-import Config from '../../Config';
-import use from '../../state/use';
 import withSiteLayout from '../../components/withSiteLayout';
 import CustomButton from '../../components/CustomButton';
 import StickyFooter from '../../components/StickyFooter';
 import Map from './Map';
 import Steps from './Steps';
 import Share from './Share';
-import Sponsors from './Sponsors';
+import Sponsors from '../../components/Sponsors';
 
 const Home = () => {
   const { t } = useTranslation();
-  const [user, setUser] = use('user');
   const [closedFooter, setClosedFooter] = useState(false);
-
-  const onSuccess = res => {
-    setUser({
-      ...res.profileObj,
-      token: res.tokenObj
-    });
-  };
-
-  const onFailure = err => setUser();
 
   return (
     <Box overflow="auto">
@@ -36,15 +23,6 @@ const Home = () => {
         <Steps />
         <Share />
         <Sponsors />
-
-        {!user && (
-          <GoogleLogin
-            clientId={Config.googleClientId}
-            onSuccess={onSuccess}
-            onFailure={onFailure}
-            isSignedIn={true}
-          />
-        )}
       </Grid>
 
       <Box style={{width: "100%", position: "fixed", bottom: 0}}>
