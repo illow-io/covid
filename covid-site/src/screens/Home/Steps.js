@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import { Heading, Grid } from 'grommet';
 import { useTranslation } from 'react-i18next';
 import { CloudUpload, BarChart, ShareOption } from 'grommet-icons';
@@ -7,6 +8,7 @@ import CustomButton from '../../components/CustomButton';
 
 const Steps = () => {
   const { t } = useTranslation();
+  const history = useHistory();
 
   return (
     <Grid pad="large" gap="medium">
@@ -16,7 +18,7 @@ const Steps = () => {
         <Badge icon={<BarChart size="32px" />} text={t("SCORE_STEP")} />
         <Badge icon={<ShareOption size="32px" />} text={t("SHARE_STEP")} />
       </Grid>
-      <CustomButton secondary text={t("DISCOVER_SCORE")} />
+      <CustomButton secondary text={t("DISCOVER_SCORE")} onClick={() => history.push("/discover")} />
     </Grid>
   );
 };

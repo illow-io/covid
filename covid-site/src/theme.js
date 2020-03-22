@@ -7,7 +7,7 @@ const theme = {
     colors: {
       "dark-2": "#444444",
       "dark-5": "#888888",
-      "light-2": "#f6f6f6"
+      "light-2": "#f6f6f6",
     },
   },
   button: {

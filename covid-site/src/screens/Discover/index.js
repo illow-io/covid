@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import { Grid, Heading, Text } from 'grommet';
 import { CloudUpload } from 'grommet-icons';
 import { useTranslation } from 'react-i18next';
@@ -6,8 +7,11 @@ import withSiteLayout from '../../components/withSiteLayout';
 import CustomButton from '../../components/CustomButton';
 import Sponsors from '../../components/Sponsors';
 
+const googleTakeout = "https://takeout.google.com";
+
 const Discover = () => {
   const { t } = useTranslation();
+  const history = useHistory();
 
   return (
     <Grid pad="large" gap="large">
@@ -22,6 +26,7 @@ const Discover = () => {
           size="16px"
           pad="20px"
           elevation="small"
+          onClick={(event) => {event.preventDefault(); window.open(googleTakeout);}}
         />
         <Text textAlign="center" size="16px" color="dark-5">{t('HAVE_DATA')}</Text>
         <CustomButton
@@ -30,6 +35,7 @@ const Discover = () => {
           text={t("UPLOAD_IT")}
           size="16px"
           pad="20px"
+          onClick={() => history.push("/upload")}
         />
       </Grid>
 

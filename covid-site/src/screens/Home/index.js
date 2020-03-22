@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import { Box, Grid, Heading, Text } from 'grommet';
 import { useTranslation } from 'react-i18next';
 import withSiteLayout from '../../components/withSiteLayout';
@@ -9,9 +10,10 @@ import Steps from './Steps';
 import Share from './Share';
 import Sponsors from '../../components/Sponsors';
 
-const Home = () => {
+const Home = props => {
   const { t } = useTranslation();
   const [closedFooter, setClosedFooter] = useState(false);
+  const history = useHistory();
 
   return (
     <Box overflow="auto">
@@ -27,7 +29,7 @@ const Home = () => {
 
       <Box style={{width: "100%", position: "fixed", bottom: 0}}>
         <Box pad={{ horizontal: "large", bottom: "xlarge", top: "70px" }} background = "linear-gradient(0deg, #fff, rgba(0,0,0,0))">
-          <CustomButton primary text={t("DISCOVER_SCORE")}/>
+          <CustomButton primary text={t("DISCOVER_SCORE")} onClick={() => history.push("/discover")} />
         </Box>
 
         {!closedFooter && (

@@ -20,7 +20,18 @@ export default ({ text, size = "large", icon, primary, secondary, inverted, ...p
   }
 
   return (
-    <Box hoverIndicator background={background} pad={pad} align="center" justify="center" round="small" direction="row" gap="small" {...props}>
+    <Box
+      hoverIndicator
+      focusIndicator={false}
+      background={background}
+      pad={pad}
+      align="center"
+      justify="center"
+      round="small"
+      direction="row"
+      gap="small"
+      {...props}
+    >
       {icon}
       <Text color={textColor} size={size} weight={textWeight}>{text}</Text>
     </Box>
