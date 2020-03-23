@@ -22,7 +22,7 @@ const SignIn = () => {
       ...res.profileObj,
       token: res.tokenObj
     });
-    history.push("/upload");
+    history.push("/discover");
   };
 
   const onFailure = err => setUser();

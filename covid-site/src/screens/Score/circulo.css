@@ -1,0 +1,12 @@
+.circulo {
+	width: 10rem;
+	height: 10rem;
+	border-radius: 50%;
+	background: #ffffff ;
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+    margin:0px auto;
+    padding:3%
+}

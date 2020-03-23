@@ -61,6 +61,31 @@ const config = convict({
       default: 'fakeSecretAccessKey',
       env: 'AWS_SECRET_ACCESS_KEY'
     }
+  },
+  upload: {
+    debug: {
+      doc: 'Show upload debug info',
+      format: Boolean,
+      default: true
+    },
+    path: {
+      doc: 'File upload path',
+      format: String,
+      default: 'tmp/uploads'
+    },
+    limits: {
+      fileSize: {
+        doc: 'Max file size',
+        format: Number,
+        default: 100 * 1024 * 1024
+      }
+    }
+  },
+  googleClientId: {
+    doc: 'The google client Id',
+    format: String,
+    default: 'wJalrXUtnFEMI-K7MDENG/bPxdfadLEKEY',
+    env: 'GOOGLE_CLIENT_ID'
   }
 });
 
