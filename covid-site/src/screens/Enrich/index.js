@@ -70,8 +70,8 @@ const Enrich = () => {
   }
 
   return (
-    <>
-      <Box pad="large" style={{backgroundColor: '#e8e7e7'}}>
+    <Box rows={["flex", "auto"]}>
+      <Box pad="large" style={{backgroundColor: '#e8e7e7'}} overflow="auto">
         <div style={{backgroundColor: 'white', borderRadius: 10}}>
           <div className="CovidBanner" style={{padding: '30px 20px', textAlign: 'center', borderRadius: '10px 10px 0px 0px'}}>
             <Text color="white">{t('ENRICH_TITLE')}</Text>
@@ -98,9 +98,9 @@ const Enrich = () => {
 
         </div>
         <Text style={privacyStyle}>{t('TERMS_AND_CONDITIONS')}</Text>
-        <LearnMore linkUrl="/enrich" />
+        <LearnMore linkUrl="/enrich" margin={{ vertical: "small" }} />
       </Box>
-      <Footer pad="medium" style={{display: 'block'}}>
+      <Box pad="medium">
         <CustomButton 
           primary 
           style={{marginBottom: 10}} 
@@ -108,8 +108,8 @@ const Enrich = () => {
           onClick={onSendCovidStatusHandler}
         />
         <CustomButton tertiary text={t("BUTTON_SKIP_LABEL")} onClick={() => history.push("/score")} />
-      </Footer>
-    </>
+      </Box>
+    </Box>
   );
 };
 

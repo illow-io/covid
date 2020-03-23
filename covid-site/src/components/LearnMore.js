@@ -1,16 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const learnClass = {
     textAlign: 'center',
-    marginTop: 20,
     textDecoration: 'none',
     color: 'blue',
     fontSize: 12
 };
 
-const learnMore = props => (
-    <NavLink style={learnClass} to={props.linkUrl}>learn more</NavLink>
-);
+export default ({ linkUrl, ...props }) => {
+  const { t } = useTranslation();
 
-export default learnMore;
+  return <NavLink style={learnClass} to={linkUrl} {...props}>{t("LEARN_MORE")}</NavLink>;
+};
