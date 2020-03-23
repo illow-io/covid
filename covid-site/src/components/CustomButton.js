@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Text } from 'grommet';
 
-export default ({ text, size = "large", icon, primary, secondary, inverted, maybe, closeb, ...props}) => {
+export default ({ text, size = "large", icon, primary, secondary, send, skip, inverted, disabled, ...props}) => {
   let background, textColor, textWeight;
   const pad = size === "large" ? "22px" : "15px";
 
@@ -17,13 +17,13 @@ export default ({ text, size = "large", icon, primary, secondary, inverted, mayb
     background = "white";
     textColor = "#484848";
     textWeight = "bold";
-  } else if (maybe) {
-    background = "#efeaf5";
-    textColor = "#8060cc";
+  } else if (send) {
+    background = '#3b219e';
+    textColor = "#ffffff";
     textWeight = "bold";
-  } else if (closeb) {
-    background = "#3a219e";
-    textColor = "white";
+  } else if (skip) {
+    background = '#e8e7e7'
+    textColor = "#3b219e";
     textWeight = "bold";
   }
 
@@ -38,6 +38,7 @@ export default ({ text, size = "large", icon, primary, secondary, inverted, mayb
       round="small"
       direction="row"
       gap="small"
+      disabled
       {...props}
     >
       {icon}
