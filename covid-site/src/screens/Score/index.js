@@ -29,7 +29,7 @@ const Score = () => {
       </Box>
       <Box style={{width: "100%", position: "fixed", bottom: 0}}>
         <CustomButton
-            closeb
+            primary
             text={t("Close and Share")}
             size="20px"
             pad="20px"
@@ -38,7 +38,7 @@ const Score = () => {
             
           />    
           <CustomButton
-            maybe
+            tertiary
             text={t("Maybe Later")}
             size="20px"
             pad="20px"

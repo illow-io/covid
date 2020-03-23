@@ -102,12 +102,12 @@ const Enrich = () => {
       </Box>
       <Footer pad="medium" style={{display: 'block'}}>
         <CustomButton 
-          send 
+          primary 
           style={{marginBottom: 10}} 
           text={t("BUTTON_SEND_LABEL")} 
           onClick={onSendCovidStatusHandler}
         />
-        <CustomButton skip text={t("BUTTON_SKIP_LABEL")} onClick={() => history.push("/score")} />
+        <CustomButton tertiary text={t("BUTTON_SKIP_LABEL")} onClick={() => history.push("/score")} />
       </Footer>
     </>
   );

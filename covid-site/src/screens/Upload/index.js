@@ -13,8 +13,6 @@ const Upload = () => {
         gap="small"
         pad="large"
         style={{ backgroundColor: "#f5f7f6" }}
-        // margin={{ top: "large", bottom: "160px" }}
-        // justify="center"
       >
         <Grid gap="small" justify="center">
           <Box
@@ -80,13 +78,13 @@ const Upload = () => {
         pad={{top: "20px", bottom: "50px", horizontal: "30px" }}
       >
         <CustomButton
-          updateAccept
+          primary
           text={t("ACCEPT")}
           style={{ paddingTop: "10px", paddingBottom: "10px" }}
           onClick={() => {}}
         />
         <CustomButton
-          updateDecline
+          tertiary
           text={t("DECLINE")}
           margin={{ top: "5px" }}
           style={{
