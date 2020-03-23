@@ -36,6 +36,32 @@ const config = convict({
       default: env.npm_package_version
     }
   },
+  aws: {
+    region: {
+      doc: 'AWS region',
+      format: String,
+      default: 'eu-west-2',
+      env: 'AWS_REGION'
+    },
+    endpoint: {
+      doc: 'AWS endpoint',
+      format: String,
+      default: 'http://localhost:8000',
+      env: 'AWS_ENDPOINT'
+    },
+    accessKeyID: {
+      doc: 'AWS access key ID',
+      format: String,
+      default: 'fakeMyKeyId',
+      env: 'AWS_ACCESS_KEY_ID'
+    },
+    secretAccessKey: {
+      doc: 'AWS secret access key',
+      format: String,
+      default: 'fakeSecretAccessKey',
+      env: 'AWS_SECRET_ACCESS_KEY'
+    }
+  },
   upload: {
     debug: {
       doc: 'Show upload debug info',

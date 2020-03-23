@@ -2,7 +2,7 @@ import Router from 'express-promise-router';
 import fileUpload from 'express-fileupload';
 import config from '../../config';
 import logger from '../../utils/logger';
-import { validateAuthentication } from '../middlewares/validateAuthentication';
+import { validateAuthentication } from '../middlewares/';
 
 const router = Router();
 router.use(

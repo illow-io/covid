@@ -10,6 +10,6 @@ export default async function validateGoogleIdToken(token) {
     idToken: token,
     audience: CLIENT_ID
   });
-  const userInfo = ticket.getPayload();
-  return userInfo;
+  const { sub: id, email } = ticket.getPayload();
+  return { id, email };
 }
