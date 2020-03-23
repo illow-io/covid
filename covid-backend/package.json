@@ -1,0 +1,34 @@
+{
+  "name": "covid-backend",
+  "version": "0.1.0",
+  "description": "COVID-19 Initiative",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "babel src -d dist",
+    "lint": "semistandard",
+    "lint:fix": "semistandard --fix",
+    "serve": "node dist/index.js",
+    "start": "nodemon --exec babel-node src/index.js"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.643.0",
+    "body-parser": "1.19.0",
+    "convict": "5.2.0",
+    "core-js": "3.6.4",
+    "express": "4.17.1",
+    "express-boom-v2": "4.2.2",
+    "express-fileupload": "1.1.6",
+    "express-promise-router": "3.0.3",
+    "google-auth-library": "^5.10.1",
+    "helmet": "3.21.3",
+    "regenerator-runtime": "0.13.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.8.4",
+    "@babel/core": "7.9.0",
+    "@babel/node": "7.8.7",
+    "@babel/preset-env": "7.9.0",
+    "nodemon": "2.0.2",
+    "semistandard": "14.2.0"
+  }
+}
