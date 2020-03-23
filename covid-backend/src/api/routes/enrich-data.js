@@ -1,9 +1,10 @@
-import { Router } from 'express';
-import requestValidation from '../middlewares/requestValidation';
+import Router from 'express-promise-router';
+import { requestValidation, validateAuthentication } from '../middlewares';
+import { removeEmpty } from '../../utils';
 import DataModel from '../../db/index';
-import asyncRequestHandler from '../middlewares/asyncRequestHandler';
 
 const router = Router();
+router.use(validateAuthentication);
 
 const validate = {
   enrichData(inputs) {
@@ -17,7 +18,8 @@ const validate = {
 };
 
 router.post('/enrich-data', requestValidation(validate.enrichData, 'body'), (req, res) => {
-  DataModel.save(req.body);
+  const data = removeEmpty(req.body);
+  DataModel.save({ ...data, ...req.currentUser });
   res.status(202).end();
 });
 

@@ -16,13 +16,9 @@ const createTable = () => {
   const params = {
     TableName: tableName,
     KeySchema: [
-      { AttributeName: 'id', KeyType: 'HASH' }, //Partition key
-      { AttributeName: 'since', KeyType: 'RANGE' } //Sort key
+      { AttributeName: 'id', KeyType: 'HASH' } //Partition key
     ],
-    AttributeDefinitions: [
-      { AttributeName: 'id', AttributeType: 'S' },
-      { AttributeName: 'since', AttributeType: 'S' }
-    ],
+    AttributeDefinitions: [{ AttributeName: 'id', AttributeType: 'S' }],
     ProvisionedThroughput: {
       ReadCapacityUnits: 10,
       WriteCapacityUnits: 10
