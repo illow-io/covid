@@ -18,7 +18,7 @@ const Steps = () => {
         <Badge icon={<BarChart size="32px" />} text={t("SCORE_STEP")} />
         <Badge icon={<ShareOption size="32px" />} text={t("SHARE_STEP")} />
       </Grid>
-      <CustomButton secondary text={t("DISCOVER_SCORE")} onClick={() => history.push("/discover")} />
+      <CustomButton secondary text={t("DISCOVER_SCORE")} onClick={() => history.push("/sign-in")} />
     </Grid>
   );
 };

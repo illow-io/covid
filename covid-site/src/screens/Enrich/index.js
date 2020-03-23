@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import withSiteLayout from '../../components/withSiteLayout';
 import CustomButton from '../../components/CustomButton';
 import LearnMore from '../../components/LearnMore';
-import axios from '../../axiosConfig';
+import api from '../../services/api';
 
 const Enrich = () => {
   const { t } = useTranslation();
@@ -63,7 +63,7 @@ const Enrich = () => {
 
   const onSendCovidStatusHandler = () => {
     const data = {'status': value, 'since': dateSince};
-    axios.post('/enrich-data', data)
+    api.post('/enrich-data', data)
       .then(res => res);
     
     history.push("/score");

@@ -29,7 +29,7 @@ const Home = props => {
 
       <Box style={{width: "100%", position: "fixed", bottom: 0}}>
         <Box pad={{ horizontal: "large", bottom: "xlarge", top: "70px" }} background = "linear-gradient(0deg, #fff, rgba(0,0,0,0))">
-          <CustomButton primary text={t("DISCOVER_SCORE")} onClick={() => history.push("/discover")} />
+          <CustomButton primary text={t("DISCOVER_SCORE")} onClick={() => history.push("/sign-in")} />
         </Box>
 
         {!closedFooter && (

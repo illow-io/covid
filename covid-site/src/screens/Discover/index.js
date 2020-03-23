@@ -35,7 +35,7 @@ const Discover = () => {
           text={t("UPLOAD_IT")}
           size="16px"
           pad="20px"
-          onClick={() => history.push("/sign-in")}
+          onClick={() => history.push("/upload")}
         />
       </Grid>
 
