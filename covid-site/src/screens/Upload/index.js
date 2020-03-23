@@ -21,6 +21,7 @@ const Upload = () => {
     api.post("/upload-data", selectedFile)
      .then(res => res)
      .catch(err => err);
+    history.push("/enrich");
   };
 
   const changeFileHandler = () => setSelectedFile(null);
