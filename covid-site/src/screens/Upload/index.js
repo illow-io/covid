@@ -1,11 +1,29 @@
-import React from "react";
-import { Box, Grid, Heading, Text, Button } from "grommet";
+import React, { useState } from "react";
+import { useHistory } from 'react-router-dom';
+import { Box, Grid, Text } from "grommet";
 import { useTranslation } from "react-i18next";
 import withSiteLayout from "../../components/withSiteLayout";
 import CustomButton from "../../components/CustomButton";
+import api from '../../services/api';
 
 const Upload = () => {
   const { t } = useTranslation();
+  const fileInputRef = React.createRef();
+  const history = useHistory();
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const onFileUploadHandler = () => {
+    let fileUploaded = fileInputRef.current.files[0];
+    fileUploaded && setSelectedFile(fileUploaded);
+  };
+
+  const onSendFileHandler = () => {
+    api.post("/upload-data", selectedFile)
+     .then(res => res)
+     .catch(err => err);
+  };
+  
+  const onDeclineHandler = () => history.push("/");
 
   return (
     <Grid rows={["flex", "auto"]}>
@@ -30,28 +48,7 @@ const Upload = () => {
           >
             {t("FILE_SELECTED")}
           </Text>
-          <img
-            src="/file-logo.png"
-            alt="file logo"
-            style={{
-              margin: "auto",
-              marginBottom: "10px",
-              width: "45pt",
-              height: "auto"
-            }}
-          />
-          <Heading
-            level={5}
-            margin={{ top: "xsmall", bottom: "10px" }}
-            textAlign="center"
-            color="dark-1"
-          >
-            {t("GEOLOCATION_DATA")}
-          </Heading>
-
-          <Text textAlign="center" size="12px" color="dark-1">
-            35MB
-          </Text>
+          <input type="file" name="file" ref={fileInputRef} onChange={onFileUploadHandler} />
         </Box>
 
         <Text textAlign="center" size="14px" color="dark-5" margin="none">{t('FOOTER_NOTE')}</Text>
@@ -64,13 +61,13 @@ const Upload = () => {
         <CustomButton
           primary
           text={t("ACCEPT")}
-          onClick={() => {}}
+          onClick={onSendFileHandler}
         />
         <CustomButton
           tertiary
           text={t("DECLINE")}
           margin={{ top: "5px" }}
-          onClick={() => {}}
+          onClick={onDeclineHandler}
         />
       </Box>
     </Grid>
