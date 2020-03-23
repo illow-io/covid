@@ -46,19 +46,19 @@ const config = convict({
     endpoint: {
       doc: 'AWS endpoint',
       format: String,
-      default: 'http://localhost:6000',
+      default: 'http://localhost:8000',
       env: 'AWS_ENDPOINT'
     },
     accessKeyID: {
       doc: 'AWS access key ID',
       format: String,
-      default: 'AKIAIOSFODNN7EXAMPLE',
+      default: 'fakeMyKeyId',
       env: 'AWS_ACCESS_KEY_ID'
     },
     secretAccessKey: {
       doc: 'AWS secret access key',
       format: String,
-      default: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
+      default: 'fakeSecretAccessKey',
       env: 'AWS_SECRET_ACCESS_KEY'
     }
   }

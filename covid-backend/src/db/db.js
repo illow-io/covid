@@ -3,6 +3,8 @@ import config from '../config';
 
 AWS.config.update({
   region: config.get('aws.region'),
+  accessKeyId: config.get('aws.accessKeyID'),
+  secretAccessKey: config.get('aws.secretAccessKey'),
   endpoint: config.get('aws.endpoint')
 });
 
@@ -35,6 +37,8 @@ const createTable = () => {
     }
   });
 };
+
+createTable();
 
 export default {
   save: data => {
