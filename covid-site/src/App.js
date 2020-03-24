@@ -15,6 +15,7 @@ import Score from './screens/Score';
 import SignIn from './screens/SignIn';
 import SpreadTheWord from './screens/SpreadTheWord';
 import Upload from './screens/Upload';
+import Privacy from './screens/Privacy';
 
 import Loader from './components/Loader';
 
@@ -24,6 +25,9 @@ function App() {
       <Grommet theme={theme} full>
         <Suspense fallback={<Loader />}>
           <Switch>
+            <Route path="/privacy">
+              <Privacy />
+            </Route>
             <Route path="/discover">
               <Discover />
             </Route>
