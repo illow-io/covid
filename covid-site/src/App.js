@@ -8,6 +8,8 @@ import {
 import { Grommet } from "grommet";
 import theme from './theme.js';
 
+import withTracker from "./withTracker";
+
 import Discover from './screens/Discover';
 import Enrich from './screens/Enrich';
 import Home from './screens/Home';
@@ -19,32 +21,22 @@ import Privacy from './screens/Privacy';
 import Loader from './components/Loader/Loader';
 
 function App() {
+  const screens = [
+    { path: "/privacy", component: Privacy },
+    { path: "/discover", component: Discover },
+    { path: "/sign-in", component: SignIn },
+    { path: "/upload", component: Upload },
+    { path: "/enrich", component: Enrich },
+    { path: "/score", component: Score },
+    { path: "/", component: Home },
+  ];
+
   return (
     <Router>
       <Grommet theme={theme} full>
         <Suspense fallback={<Loader />}>
           <Switch>
-            <Route path="/privacy">
-              <Privacy />
-            </Route>
-            <Route path="/discover">
-              <Discover />
-            </Route>
-            <Route path="/sign-in">
-              <SignIn />
-            </Route>
-            <Route path="/upload">
-              <Upload />
-            </Route>
-            <Route path="/enrich">
-              <Enrich />
-            </Route>
-            <Route path="/score">
-              <Score />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
+            {screens.map(screen => <Route key={screen.path} path={screen.path} component={withTracker(screen.component)} />)}
           </Switch>
         </Suspense>
       </Grommet>

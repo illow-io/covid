@@ -33,7 +33,7 @@ const Sponsors = ({ showTitle = true, ...props }) => {
       {showTitle && <Heading level={3} margin={{ horizontal: "xlarge", vertical: "none" }} size="medium" textAlign="center">{t('HOME_SPONSORS')}</Heading>}
       <Grid columns={{ count: 4, size: "auto" }} gap="xsmall" align="center" justify="center">
         {sponsors.map(sponsor => (
-          <a href={sponsor.url} target="_blank" rel="noopener noreferrer">
+          <a key={sponsor.name} href={sponsor.url} target="_blank" rel="noopener noreferrer">
             <Image src={sponsor.path} alt={sponsor.name} opacity="0.3" style={{ width: "100%", height: "auto", filter: "grayscale(100%)" }} />
           </a>
         ))}
