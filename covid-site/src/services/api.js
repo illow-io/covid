@@ -1,4 +1,5 @@
 import axios from 'axios';
+import qs from 'qs';
 import Config from '../Config';
 
 let token;
@@ -34,3 +35,14 @@ export const authenticate = async (accessToken) => {
   token = accessToken;
   return post("/users");
 };
+
+export default {
+  authenticate,
+  get,
+  put,
+  post,
+  patch,
+  del,
+  head,
+  options
+}

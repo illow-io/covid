@@ -13,6 +13,7 @@
     "i18next-browser-languagedetector": "4.0.2",
     "i18next-locize-backend": "3.0.3",
     "polished": "3.5.0",
+    "qs": "6.9.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-google-login": "5.1.2",

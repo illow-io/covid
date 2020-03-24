@@ -31,6 +31,8 @@ export default ({ text, size = "large", icon, branded, primary, secondary, terti
     textWeight = "bold";
   }
 
+  const click = disabled ? undefined : onClick;
+
   return (
     <Box
       hoverIndicator
@@ -42,7 +44,7 @@ export default ({ text, size = "large", icon, branded, primary, secondary, terti
       round="small"
       direction="row"
       gap="small"
-      onClick={!disabled && onClick}
+      onClick={click}
       {...props}
       style={theStyle}
     >

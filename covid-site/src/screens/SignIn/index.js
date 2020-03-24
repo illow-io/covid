@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, Redirect, NavLink } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import { Grid, Heading, Text, Box, Footer } from 'grommet';
 import { useTranslation } from 'react-i18next';
 import GoogleLogin from 'react-google-login';
@@ -12,11 +12,7 @@ import CustomButton from '../../components/CustomButton';
 const SignIn = () => {
   const { t } = useTranslation();
   const history = useHistory();
-  const [user, setUser] = use('user');
-
-  if (user) {
-    return <Redirect to="/upload" />;
-  }
+  const setUser = use('user')[1];
 
   const onSuccess = async (res) => {
     setUser(res.profileObj);
