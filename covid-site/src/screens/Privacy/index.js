@@ -1,6 +1,8 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { Box, Heading, Paragraph } from 'grommet';
-import AppHeader from '../../components/AppHeader'
+import { FormPreviousLink } from 'grommet-icons';
+import AppHeader from '../../components/AppHeader';
 
 const Privacy = props => {
 
@@ -32,6 +34,7 @@ const Privacy = props => {
         <>
             <AppHeader />
             <Box pad="large">
+                <NavLink to="/sign-in"><FormPreviousLink color="#000"/></NavLink>
                 <Heading>Privacy Policy</Heading>
                 {privacyParagraphs}
                 <Heading>Terms of Service</Heading>
