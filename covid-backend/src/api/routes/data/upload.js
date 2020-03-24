@@ -1,8 +1,7 @@
 import Router from 'express-promise-router';
 import fileUpload from 'express-fileupload';
-import config from '../../config';
-import logger from '../../utils/logger';
-import { validateAuthentication } from '../middlewares/';
+import config from '../../../config';
+import logger from '../../../utils/logger';
 
 const router = Router();
 router.use(
@@ -18,7 +17,7 @@ router.use(
   })
 );
 
-router.post('/upload-data', validateAuthentication, (req, res) => {
+router.post('/', async (req, res) => {
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.boom.badRequest('No files were uploaded.');
   }

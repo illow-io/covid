@@ -40,7 +40,7 @@ const config = convict({
     region: {
       doc: 'AWS region',
       format: String,
-      default: 'eu-west-2',
+      default: 'eu-central-1',
       env: 'AWS_REGION'
     },
     endpoint: {
@@ -91,7 +91,7 @@ const config = convict({
 
 try {
   // Load environment specific settings
-  config.loadFile(`${__dirname}/${config.get('env')}.json`);
+  config.loadFile(`${__dirname}/../../${config.get('env')}.json`);
 } catch (error) {
   // No environment settings found
 }
