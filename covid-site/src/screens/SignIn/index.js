@@ -1,6 +1,6 @@
 import React from 'react';
-import { useHistory, Redirect } from "react-router-dom";
-import { Grid, Heading, Text, Box } from 'grommet';
+import { useHistory, Redirect, NavLink } from "react-router-dom";
+import { Grid, Heading, Text, Box, Footer } from 'grommet';
 import { useTranslation } from 'react-i18next';
 import GoogleLogin from 'react-google-login';
 import Config from '../../Config';
@@ -28,30 +28,34 @@ const SignIn = () => {
   const onFailure = err => setUser();
 
   return (
-    <Grid pad="large" gap="large">
-      <Heading level={3} margin={{ horizontal: "30px", bottom: "none" }} size="medium" textAlign="center">{t('SIGNIN_TITLE')}</Heading>
+    <Grid pad="large">
+      <div>
+        <Heading level={3} margin={{ horizontal: "30px", bottom: "none", height: 'auto' }} size="medium" textAlign="center">{t('SIGNIN_TITLE')}</Heading>
 
-      <Text textAlign="center" size="16px" color="dark-5">{t('PRIVACY_PROMISE')}</Text>
-
-      <Box>
-        <GoogleLogin
-          clientId={Config.googleClientId}
-          render={renderProps => (
-            <CustomButton
-              inverted
-              icon={<img src="/google.png" alt="google" style={{ width: "34px", height: "auto" }} />}
-              text={t("SIGN_IN_WITH_GOOGLE")}
-              size="16px"
-              pad="20px"
-              elevation="small"
-              onClick={renderProps.onClick}
-              disabled={renderProps.disabled}
-            />
-          )}
-          onSuccess={onSuccess}
-          onFailure={onFailure}
-        />
-      </Box>
+        <Box style={{marginTop: '150px'}}>
+          <GoogleLogin
+            clientId={Config.googleClientId}
+            render={renderProps => (
+              <CustomButton
+                inverted
+                icon={<img src="/google.png" alt="google" style={{ width: "34px", height: "auto" }} />}
+                text={t("SIGN_IN_WITH_GOOGLE")}
+                size="16px"
+                pad="20px"
+                elevation="small"
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+              />
+            )}
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+          />
+          <Text style={{marginTop: '20px', textAlign: 'center', fontSize: '16px'}} color="dark-5"><NavLink style={{textDecoration: 'none', color: 'blue'}} to="/privacy">Privacy promise.</NavLink> <br/>What are we going to use the data for.{t('PRIVACY_PROMISE')}</Text>
+        </Box>
+      </div>
+      <Footer style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-end'}}>
+        <p style={{fontWeight: 'bold', margin: '0 0 10px 0', fontSize: '18px', color: '#505050'}}>Powered By</p><img width="90px" src="/wibson.png" alt="Powered by Wibson" />
+      </Footer>
     </Grid>
   );
 };
