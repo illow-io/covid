@@ -1,8 +1,8 @@
 import Router from 'express-promise-router';
 import fileUpload from 'express-fileupload';
 import config from '../../../config';
-import logger from '../../../utils/logger';
 import { users } from '../../../db/stores';
+import s3 from '../../../utils/s3';
 
 const router = Router();
 router.use(
@@ -25,20 +25,10 @@ router.post('/', async (req, res) => {
 
   const data = req.files.data;
 
-  logger.debug({
-    md5: data.md5,
-    name: data.name,
-    size: data.size
-  });
-
+  await s3.putObject(`${data.md5}.zip`, data.data);
   await users.appendValue(req.currentUser.id, 'dataHashes', data.md5);
 
-  // Use the mv() method to place the file somewhere on your server
-  data.mv(`${config.get('upload.path')}/${data.name}`, function(err) {
-    if (err) return res.boom.badImplementation(err.message);
-
-    res.json({ message: 'File uploaded!' });
-  });
+  res.json({ message: 'File uploaded!' });
 });
 
 export default router;
