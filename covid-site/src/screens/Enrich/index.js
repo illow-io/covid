@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import './index.css';
-import { Footer, RadioButtonGroup, FormField, TextInput, Box, Text } from 'grommet';
+import { RadioButtonGroup, FormField, TextInput, Box, Text } from 'grommet';
 import { useTranslation } from 'react-i18next';
 import withSiteLayout from '../../components/withSiteLayout';
 import CustomButton from '../../components/CustomButton';
@@ -98,7 +98,7 @@ const Enrich = () => {
 
         </div>
         <Text style={privacyStyle}>{t('TERMS_AND_CONDITIONS')}</Text>
-        <LearnMore linkUrl="/enrich" margin={{ vertical: "small" }} />
+        <LearnMore linkUrl="/privacy" margin={{ vertical: "small" }} />
       </Box>
       <Box pad="medium" gap="medium">
         <CustomButton 

@@ -10,7 +10,7 @@ const Upload = () => {
   const { t } = useTranslation();
   const fileInputRef = React.createRef();
   const history = useHistory();
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(undefined);
 
   const onFileUploadHandler = () => {
     let fileUploaded = fileInputRef.current.files[0];
@@ -24,11 +24,11 @@ const Upload = () => {
     history.push("/enrich");
   };
 
-  const changeFileHandler = () => setSelectedFile(null);
+  const changeFileHandler = () => setSelectedFile(undefined);
 
   const bytesToSize = bytes => {
     let sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-    if (bytes == 0) return '0 Byte';
+    if (Number(bytes) === 0) return '0 Byte';
     let i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
     return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
   }
@@ -39,8 +39,7 @@ const Upload = () => {
     padding: 10,
     background: 'rgb(59, 33, 158)',
     color: 'rgb(248, 248, 248)',
-    position: 'absolute',
-    bottom: 20,
+    marginTop: "30px",
     border: 'none',
     borderRadius: 5,
     fontSize: 10,
@@ -69,7 +68,7 @@ const Upload = () => {
           size="16px"
           weight="bold"
           color="dark-3"
-          margin={{ bottom: "40px" }}
+          margin={{ bottom: "30px" }}
         >
           {t("FILE_SELECTED")}
         </Text>
@@ -113,7 +112,6 @@ const Upload = () => {
           align="center"
           background="#fff"
           pad="large"
-          style={{position: 'relative'}}
         >
           {fileStatus}
         </Box>
@@ -128,6 +126,7 @@ const Upload = () => {
         <CustomButton
           primary
           text={t("ACCEPT")}
+          disabled={!selectedFile}
           onClick={onSendFileHandler}
         />
         <CustomButton

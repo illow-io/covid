@@ -13,7 +13,6 @@ import Enrich from './screens/Enrich';
 import Home from './screens/Home';
 import Score from './screens/Score';
 import SignIn from './screens/SignIn';
-import SpreadTheWord from './screens/SpreadTheWord';
 import Upload from './screens/Upload';
 import Privacy from './screens/Privacy';
 
@@ -42,9 +41,6 @@ function App() {
             </Route>
             <Route path="/score">
               <Score />
-            </Route>
-            <Route path="/spread-the-word">
-              <SpreadTheWord />
             </Route>
             <Route path="/">
               <Home />

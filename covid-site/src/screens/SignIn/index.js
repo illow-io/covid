@@ -28,7 +28,7 @@ const SignIn = () => {
   const onFailure = err => setUser();
 
   return (
-    <Grid pad="large">
+    <Grid pad="large" rows={["flex", "auto"]}>
       <div>
         <Heading level={3} margin={{ horizontal: "30px", bottom: "none", height: 'auto' }} size="medium" textAlign="center">{t('SIGNIN_TITLE')}</Heading>
 
@@ -50,11 +50,18 @@ const SignIn = () => {
             onSuccess={onSuccess}
             onFailure={onFailure}
           />
-          <Text style={{marginTop: '20px', textAlign: 'center', fontSize: '16px'}} color="dark-5"><NavLink style={{textDecoration: 'none', color: 'blue'}} to="/privacy">Privacy promise.</NavLink> <br/>What are we going to use the data for.{t('PRIVACY_PROMISE')}</Text>
+          <Text style={{marginTop: '20px', textAlign: 'center', fontSize: '16px'}} color="dark-5">
+            <NavLink style={{textDecoration: 'none', color: 'blue'}} to="/privacy">{t('PRIVACY_PROMISE')}</NavLink>
+            <br/>
+            {t('USING_THE_DATA_FOR')}
+          </Text>
         </Box>
       </div>
-      <Footer style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-end'}}>
-        <p style={{fontWeight: 'bold', margin: '0 0 10px 0', fontSize: '18px', color: '#505050'}}>Powered By</p><img width="90px" src="/wibson.png" alt="Powered by Wibson" />
+      <Footer justify="center" gap="small">
+        <Text weight="bold" size="18px" color="#505050" margin={{ bottom: "8px" }}>Powered By</Text>
+        <a href="https://www.wibson.org" target="_blank" rel="noopener noreferrer" style={{ width: "90px" }}>
+          <img src="/wibson.png" alt="Wibson" style={{ width: "100%", height: "auto" }} />
+        </a>
       </Footer>
     </Grid>
   );

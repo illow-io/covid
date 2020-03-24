@@ -1,9 +1,13 @@
 import React from 'react';
 import { Box, Text } from 'grommet';
 
-export default ({ text, size = "large", icon, branded, primary, secondary, tertiary, inverted, disabled, ...props}) => {
+export default ({ text, size = "large", icon, branded, primary, secondary, tertiary, inverted, disabled, onClick, style = {}, ...props}) => {
   let background, textColor, textWeight;
   const pad = size === "large" ? "22px" : "15px";
+  const theStyle = {
+    ...style,
+    opacity: disabled ? "0.3" : "1.0"
+  };
 
   if (branded) {
     background = "linear-gradient(270deg, #3b219e, #a54792)";
@@ -38,8 +42,9 @@ export default ({ text, size = "large", icon, branded, primary, secondary, terti
       round="small"
       direction="row"
       gap="small"
-      disabled
+      onClick={!disabled && onClick}
       {...props}
+      style={theStyle}
     >
       {icon}
       <Text color={textColor} size={size} weight={textWeight}>{text}</Text>

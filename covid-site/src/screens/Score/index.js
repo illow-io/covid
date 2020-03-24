@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
-import { Box, Heading, Text, Button, Grid } from 'grommet';
+import { Box, Heading, Text, Grid } from 'grommet';
 import { useTranslation } from 'react-i18next';
 import withSiteLayout from '../../components/withSiteLayout';
 import CustomButton from '../../components/CustomButton';
@@ -16,7 +16,7 @@ const Score = () => {
     <Grid rows={["flex", "auto"]}>
       <Box overflow="auto" margin={{ vertical: "medium" }}>
         <Heading level={3} margin="none" size="small" textAlign="center">{t('YOUR_RESULT')}</Heading>
-        <Box elevation="small" background="#fbfbfb" margin="10px" pad="medium" round="small">
+        <Box elevation="small" background="#fbfbfb" margin="10px" pad="large" round="small">
           {score && (
             <Box className="circle" margin={{ bottom: "large" }}>
               <Text size="50px" color="#24ff54" weight="bold">{score}%</Text> 
