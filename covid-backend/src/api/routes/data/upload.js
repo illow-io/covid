@@ -2,6 +2,7 @@ import Router from 'express-promise-router';
 import fileUpload from 'express-fileupload';
 import config from '../../../config';
 import logger from '../../../utils/logger';
+import { users } from '../../../db/stores';
 
 const router = Router();
 router.use(
@@ -29,6 +30,8 @@ router.post('/', async (req, res) => {
     name: data.name,
     size: data.size
   });
+
+  await users.appendValue(req.currentUser.id, 'dataHashes', data.md5);
 
   // Use the mv() method to place the file somewhere on your server
   data.mv(`${config.get('upload.path')}/${data.name}`, function(err) {

@@ -23,7 +23,7 @@ import { Store } from './storage';
  * @property {?string} familyName The user's last name
  * @property {?string} picture The URL of the user's profile picture
  * @property {?string} locale The user's locale, represented by a BCP 47 language tag
- * @property {?Array<string>} dataHashes Hashes for each data package uploaded by the user
+ * @property {?Array<string>} dataHashes MD5 hashes for each data package uploaded by the user
  * @property {?Array<CovidStatus>} covidStatuses Covid statuses reported by the user
  * @property {?Array<CovidRiskScore>} riskScores User Covid risk scores in ascending chronological order (last is newest).
  */
