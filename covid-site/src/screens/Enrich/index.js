@@ -31,14 +31,14 @@ const Enrich = () => {
     },
     {
       "disabled": false,
-      "id": "Have",
+      "id": "have",
       "name": "Have",
       "value": "Have",
       "label": t('HAVE_COVID')
     },
     {
       "disabled": false,
-      "id": "Had",
+      "id": "had",
       "name": "Had",
       "value": "Had",
       "label": t('HAD_COVID')
