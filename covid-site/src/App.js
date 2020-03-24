@@ -17,7 +17,7 @@ import SpreadTheWord from './screens/SpreadTheWord';
 import Upload from './screens/Upload';
 import Privacy from './screens/Privacy';
 
-import Loader from './components/Loader';
+import Loader from './components/Loader/Loader';
 
 function App() {
   return (
