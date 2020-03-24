@@ -43,6 +43,12 @@ const config = convict({
       default: 'eu-central-1',
       env: 'AWS_REGION'
     },
+    bucket: {
+      doc: 'AWS S3 bucket',
+      format: String,
+      default: 'mycovidrisk-data',
+      env: 'AWS_BUCKET'
+    },
     endpoint: {
       doc: 'AWS endpoint',
       format: String,

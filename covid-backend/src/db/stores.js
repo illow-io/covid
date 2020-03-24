@@ -18,7 +18,7 @@ import { Store } from './storage';
  * @typedef User
  * @property {string} id The user's ID
  * @property {string} email The user's email
- * @property {?string} name The user's full name
+ * @property {?string} fullName The user's full name
  * @property {?string} givenName The user's first name
  * @property {?string} familyName The user's last name
  * @property {?string} picture The URL of the user's profile picture

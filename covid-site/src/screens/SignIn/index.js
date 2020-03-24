@@ -16,7 +16,7 @@ const SignIn = () => {
 
   const onSuccess = async (res) => {
     setUser(res.profileObj);
-    await api.authenticate(res.accessToken);
+    await api.authenticate(res.tokenId);
     history.push("/discover");
   };
 
@@ -30,6 +30,7 @@ const SignIn = () => {
         <Box style={{marginTop: '150px'}}>
           <GoogleLogin
             clientId={Config.googleClientId}
+            scope="profile email openid"
             render={renderProps => (
               <CustomButton
                 inverted

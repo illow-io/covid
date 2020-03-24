@@ -13,7 +13,7 @@ const docClient = new AWS.DynamoDB.DocumentClient();
 
 const tableExists = async (TableName) => {
   try {
-    dynamodb.describeTable({ TableName }).promise();
+    await dynamodb.describeTable({ TableName }).promise();
     return true;
   } catch (err) {
     return false;
@@ -58,7 +58,7 @@ export class Store {
     this.tableName = tableName;
     this.primaryKeySchema = primaryKeySchema;
     this.indexes = indexes;
-    this.primaryKey = primaryKeySchema.AttributeName;
+    this.primaryKey = primaryKeySchema[0].AttributeName;
   }
 
   init = async () => {
@@ -91,11 +91,11 @@ export class Store {
 
   upsert = async (id, data) => {
     const updateExpression = Object.keys(data).reduce(
-      (expr, key, index) => `${expr}${index !== 0 && ','} ${key} = :new${key}`,
+      (expr, key, index) => key === this.primaryKey ? expr : `${expr}${expr !== 'set' ? ',' : ''} ${key} = :new${key}`,
       'set'
     );
     const expressionAttributeValues = Object.entries(data).reduce(
-      (values, [key, value]) => ({
+      (values, [key, value]) => key === this.primaryKey ? values : ({
         ...values,
         [`:new${key}`]: value
       }),
