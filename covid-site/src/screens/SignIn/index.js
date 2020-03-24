@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory, Redirect, NavLink } from "react-router-dom";
 import { Grid, Heading, Text, Box, Footer } from 'grommet';
 import { useTranslation } from 'react-i18next';
 import GoogleLogin from 'react-google-login';
@@ -50,7 +50,7 @@ const SignIn = () => {
             onSuccess={onSuccess}
             onFailure={onFailure}
           />
-          <Text style={{marginTop: '20px', textAlign: 'center', fontSize: '16px'}} color="dark-5">Privacy promise. <br/>What are we going to use the data for.{t('PRIVACY_PROMISE')}</Text>
+          <Text style={{marginTop: '20px', textAlign: 'center', fontSize: '16px'}} color="dark-5"><NavLink style={{textDecoration: 'none', color: 'blue'}} to="/privacy">Privacy promise.</NavLink> <br/>What are we going to use the data for.{t('PRIVACY_PROMISE')}</Text>
         </Box>
       </div>
       <Footer style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-end'}}>
