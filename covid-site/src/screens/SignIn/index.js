@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import GoogleLogin from 'react-google-login';
 import Config from '../../Config';
 import use from '../../state/use';
+import api from '../../services/api';
 import withSiteLayout from '../../components/withSiteLayout';
 import CustomButton from '../../components/CustomButton';
 
@@ -17,11 +18,9 @@ const SignIn = () => {
     return <Redirect to="/upload" />;
   }
 
-  const onSuccess = res => {
-    setUser({
-      ...res.profileObj,
-      token: res.tokenObj
-    });
+  const onSuccess = async (res) => {
+    setUser(res.profileObj);
+    await api.authenticate(res.accessToken);
     history.push("/discover");
   };
 

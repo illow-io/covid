@@ -18,7 +18,7 @@ const Upload = () => {
   };
 
   const onSendFileHandler = () => {
-    api.post("/upload-data", selectedFile)
+    api.post("/data/upload", selectedFile)
      .then(res => res)
      .catch(err => err);
     history.push("/enrich");

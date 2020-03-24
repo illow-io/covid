@@ -63,7 +63,7 @@ const Enrich = () => {
 
   const onSendCovidStatusHandler = () => {
     const data = {'status': value, 'since': dateSince};
-    api.post('/enrich-data', data)
+    api.post('/data/enrich', data)
       .then(res => res);
     
     history.push("/score");
