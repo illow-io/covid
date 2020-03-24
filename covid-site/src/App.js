@@ -16,7 +16,7 @@ import SignIn from './screens/SignIn';
 import SpreadTheWord from './screens/SpreadTheWord';
 import Upload from './screens/Upload';
 
-import Loader from './components/Loader';
+import Loader from './components/Loader/Loader';
 
 function App() {
   return (
