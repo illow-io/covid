@@ -100,10 +100,9 @@ const Enrich = () => {
         <Text style={privacyStyle}>{t('TERMS_AND_CONDITIONS')}</Text>
         <LearnMore linkUrl="/enrich" margin={{ vertical: "small" }} />
       </Box>
-      <Box pad="medium">
+      <Box pad="medium" gap="medium">
         <CustomButton 
-          primary 
-          style={{marginBottom: 10}} 
+          primary
           text={t("BUTTON_SEND_LABEL")} 
           onClick={onSendCovidStatusHandler}
         />
