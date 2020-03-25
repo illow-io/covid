@@ -4,6 +4,7 @@ import { Box, Grid, Text, Heading } from "grommet";
 import { useTranslation } from "react-i18next";
 import withSiteLayout from "../../components/withSiteLayout";
 import CustomButton from "../../components/CustomButton";
+import ComponentLoader from "../../components/ComponentLoader";
 import api from '../../services/api';
 
 const Upload = () => {
@@ -11,6 +12,7 @@ const Upload = () => {
   const fileInputRef = React.createRef();
   const history = useHistory();
   const [selectedFile, setSelectedFile] = useState(undefined);
+  const [loading, setLoading] = useState(false);
 
   const onFileUploadHandler = () => {
     let fileUploaded = fileInputRef.current.files[0];
@@ -18,6 +20,7 @@ const Upload = () => {
   };
 
   const onSendFileHandler = async () => {
+    setLoading(true);
     await api.uploadFile("/data/upload", selectedFile.name, selectedFile);
     history.push("/enrich");
   };
@@ -30,7 +33,7 @@ const Upload = () => {
     let i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
     return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
   }
-  
+
   const onDeclineHandler = () => history.push("/");
 
   const buttonChangeStyle = {
@@ -57,7 +60,7 @@ const Upload = () => {
       <input type="file" name="file" ref={fileInputRef} onChange={onFileUploadHandler} />
     </>
   );
-      
+
   if (selectedFile) {
     fileStatus = (
       <>
@@ -86,7 +89,7 @@ const Upload = () => {
         >
           {selectedFile.name}
         </Heading>
-  
+
         <Text textAlign="center" size="12px" color="dark-1">
           {bytesToSize(selectedFile.size)}
         </Text>
@@ -95,7 +98,7 @@ const Upload = () => {
       </>
     );
   }
-    
+
 
   return (
     <Grid rows={["flex", "auto"]}>
@@ -121,12 +124,15 @@ const Upload = () => {
         gap="xsmall"
         pad={{ horizontal: "large", vertical: "medium" }}
       >
-        <CustomButton
-          primary
-          text={t("ACCEPT")}
-          disabled={!selectedFile}
-          onClick={onSendFileHandler}
-        />
+        {loading ?
+          <ComponentLoader /> :
+          <CustomButton
+            primary
+            text={t("ACCEPT")}
+            disabled={!selectedFile}
+            onClick={onSendFileHandler}
+          />
+        }
         <CustomButton
           tertiary
           text={t("DECLINE")}
