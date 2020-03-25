@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import withSiteLayout from '../../components/withSiteLayout';
 import CustomButton from '../../components/CustomButton';
 import Sponsors from '../../components/Sponsors';
+import howToRiskVideo from '../../assets/media/how-to-get-data-google.mp4';
 
 const googleTakeout = "https://takeout.google.com";
 
@@ -16,6 +17,10 @@ const Discover = () => {
   return (
     <Grid pad="large" gap="large">
       <Heading level={3} margin={{ horizontal: "44px", bottom: "none" }} size="medium" textAlign="center">{t('DISCOVER_TITLE')}</Heading>
+
+      <video width="100%" height="200px" controls poster="/video-poster.png">
+        <source src={howToRiskVideo} type="video/mp4"/>
+      </video>
 
       <Grid gap="medium">
         <Text textAlign="center" size="16px" color="dark-5">{t('DONT_HAVE_DATA')}</Text>

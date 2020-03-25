@@ -1,15 +1,13 @@
 import React from "react";
-import { WorldMap } from "grommet";
+
+const mapStyles = {
+  backgroundImage: 'url("covid_map.png")',
+  height: '834px',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+}
 
 export default () => (
-  <WorldMap
-    color="neutral-1"
-    continents={[
-      {
-        name: 'Europe',
-        color: 'red',
-      },
-    ]}
-    style={{ maxHeight: "200px" }}
-  />
+  <div style={mapStyles}></div>
 );
