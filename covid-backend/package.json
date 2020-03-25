@@ -4,14 +4,14 @@
   "description": "COVID-19 Initiative",
   "main": "src/index.js",
   "scripts": {
-    "build": "babel src -d dist",
+    "build": "babel src -d dist && ./scripts/pack.sh $npm_package_name $npm_package_version",
     "lint": "semistandard",
     "lint:fix": "semistandard --fix",
     "serve": "node dist/index.js",
     "start": "nodemon --exec babel-node src/index.js"
   },
   "dependencies": {
-    "aws-sdk": "^2.643.0",
+    "aws-sdk": "2.643.0",
     "body-parser": "1.19.0",
     "convict": "5.2.0",
     "core-js": "3.6.4",
@@ -20,7 +20,7 @@
     "express-boom-v2": "4.2.2",
     "express-fileupload": "1.1.6",
     "express-promise-router": "3.0.3",
-    "google-auth-library": "^5.10.1",
+    "google-auth-library": "5.10.1",
     "helmet": "3.21.3",
     "morgan": "1.10.0",
     "regenerator-runtime": "0.13.5"
