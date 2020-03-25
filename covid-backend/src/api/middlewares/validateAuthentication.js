@@ -1,4 +1,5 @@
 import validateGoogleIdToken from '../../services/auth';
+import logger from '../../utils/logger';
 
 export default async (req, res, next) => {
   try {
@@ -6,6 +7,7 @@ export default async (req, res, next) => {
     req.currentUser = await validateGoogleIdToken(token);
     next();
   } catch (e) {
+    logger.error(e.stack);
     return res.boom.unauthorized('Token validation failed');
   }
 };

@@ -46,7 +46,7 @@ const config = convict({
       doc: 'Whether to skip access log or not',
       format: Boolean,
       default: false
-    },
+    }
   },
   aws: {
     region: {
@@ -61,11 +61,11 @@ const config = convict({
       default: 'mycovidrisk-data',
       env: 'AWS_BUCKET'
     },
-    endpoint: {
-      doc: 'AWS endpoint',
+    dynamoEndpoint: {
+      doc: 'AWS DynamoDB endpoint',
       format: String,
       default: 'http://localhost:9001',
-      env: 'AWS_ENDPOINT'
+      env: 'AWS_DYNAMO_ENDPOINT'
     },
     accessKeyID: {
       doc: 'AWS access key ID',
@@ -109,7 +109,7 @@ const config = convict({
 
 try {
   // Load environment specific settings
-  config.loadFile(`${__dirname}/../../${config.get('env')}.json`);
+  config.loadFile(`${__dirname}/${config.get('env')}.json`);
 } catch (error) {
   // No environment settings found
 }
