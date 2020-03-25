@@ -112,7 +112,7 @@ export class Store {
   }
 
   appendValue = async (id, attr, value) => {
-    const obj = await this.get(id);
+    const obj = await this.fetch(id);
     const oldValues = obj.hasOwnProperty(attr) && Array.isArray(obj[attr]) ? obj[attr] : [];
     const newValues = [...oldValues, value];
     return this.upsert(id, { [attr]: newValues });
