@@ -29,6 +29,21 @@ const httpMethods = METHODS.map(method => async (url, headers = {}, data, params
   })
 );
 
+const uploadFile = async (url, fileName, file) => {
+  const data = new FormData();
+  data.append("data", file, fileName);
+  return instance.post(
+    url,
+    data,
+    {
+      headers: {
+        Authorization: getAuth(),
+        'Content-Type': 'multipart/form-data'
+      },
+    }
+  );
+}
+
 export const [get, put, post, patch, del, head, options] = httpMethods;
 
 export const authenticate = async (accessToken) => {
@@ -38,6 +53,7 @@ export const authenticate = async (accessToken) => {
 
 export default {
   authenticate,
+  uploadFile,
   get,
   put,
   post,

@@ -17,10 +17,8 @@ const Upload = () => {
     fileUploaded && setSelectedFile(fileUploaded);
   };
 
-  const onSendFileHandler = () => {
-    api.post("/data/upload", selectedFile)
-     .then(res => res)
-     .catch(err => err);
+  const onSendFileHandler = async () => {
+    await api.uploadFile("/data/upload", selectedFile.name, selectedFile);
     history.push("/enrich");
   };
 
