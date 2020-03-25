@@ -1,7 +1,7 @@
 import aws from 'aws-sdk';
 import config from '../config';
 
-class AWSWrapper {
+export class AWSWrapper {
   constructor(bucket, s3) {
     this.bucket = bucket;
     this.s3 = s3;
@@ -18,8 +18,8 @@ class AWSWrapper {
       .catch(() => this.promisify('getObject', { Key: key })); // making it retrocompatible
   }
 
-  putObject(key, obj) {
-    return this.promisify('putObject', { Key: key.toLowerCase(), Body: obj });
+  putObject(key, headers = {}, obj) {
+    return this.promisify('putObject', { Key: key.toLowerCase(), Body: obj, ...headers });
   }
 
   async listObjectsAsIs(prefix) {

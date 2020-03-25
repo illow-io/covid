@@ -33,14 +33,14 @@ const Enrich = () => {
       "disabled": false,
       "id": "have",
       "name": "Have",
-      "value": "Have",
+      "value": "have",
       "label": t('HAVE_COVID')
     },
     {
       "disabled": false,
       "id": "had",
       "name": "Had",
-      "value": "Had",
+      "value": "had",
       "label": t('HAD_COVID')
     },
     {
@@ -56,7 +56,7 @@ const Enrich = () => {
 
   const onChangeRadioButtonHandler = event => {
     setValue(event.target.value);
-    event.target.value === 'Had' || event.target.value === 'Have' ? setInput(true) : setInput(false);
+    event.target.value === 'had' || event.target.value === 'have' ? setInput(true) : setInput(false);
   }
 
   const onChangeDateHandler = event => setDateSince(event.target.value);

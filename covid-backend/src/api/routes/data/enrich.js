@@ -5,11 +5,11 @@ import { users } from '../../../db/stores';
 const router = Router();
 
 const validate = {
-  enrichData(inputs) {
+  enrichData: (inputs) => {
     const statusAvailable = ['have', 'dontHave', 'mayHave', 'had', 'N/A'];
     const { status } = inputs;
     if (!statusAvailable.includes(status)) {
-      return res.boom.badRequest('Status not valid');
+      return 'Status not valid';
     }
     return;
   }
@@ -17,7 +17,9 @@ const validate = {
 
 router.post('/', requestValidation(validate.enrichData, 'body'), async (req, res) => {
   const { status, since } = req.body;
-  await users.appendValue(req.currentUser.id, 'covidStatuses', { status, since });
+  
+  const value = since ? { status, since } : { status };
+  await users.appendValue(req.currentUser.id, 'covidStatuses', value);
   res.status(202).end();
 });
 
