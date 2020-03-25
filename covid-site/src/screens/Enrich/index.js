@@ -61,10 +61,10 @@ const Enrich = () => {
 
   const onChangeDateHandler = event => setDateSince(event.target.value);
 
-  const onSendCovidStatusHandler = () => {
-    const data = {'status': value, 'since': dateSince};
-    api.post('/data/enrich', {}, data)
-      .then(res => res);
+  const onSendCovidStatusHandler = async () => {
+    const date = new Date(dateSince);
+    const since = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
+    await api.post('/data/enrich', {}, { status: value, since });
     
     history.push("/score");
   }

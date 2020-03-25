@@ -88,12 +88,17 @@ export class Store {
   }
 
   upsert = async (id, data) => {
-    const updateExpression = Object.keys(data).reduce(
-      (expr, key, index) => key === this.primaryKey ? expr : `${expr}${expr !== 'set' ? ',' : ''} ${key} = :new${key}`,
+    const filteredEntries = Object.entries(data).filter(
+      ([key, value]) => key !== this.primaryKey && value !== null && value !== undefined
+    );
+
+    const updateExpression = filteredEntries.reduce(
+      (expr, [key, value]) => `${expr}${expr !== 'set' ? ',' : ''} ${key} = :new${key}`,
       'set'
     );
-    const expressionAttributeValues = Object.entries(data).reduce(
-      (values, [key, value]) => key === this.primaryKey ? values : ({
+
+    const expressionAttributeValues = filteredEntries.reduce(
+      (values, [key, value]) => ({
         ...values,
         [`:new${key}`]: value
       }),
