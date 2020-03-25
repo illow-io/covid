@@ -4,6 +4,7 @@ import { Box, Heading, Text, Grid } from 'grommet';
 import { useTranslation } from 'react-i18next';
 import withSiteLayout from '../../components/withSiteLayout';
 import CustomButton from '../../components/CustomButton';
+import ShareLinks from '../../components/Share';
 import './circle.css';
 
 
@@ -31,12 +32,9 @@ const Score = () => {
         </Box>
       </Box>
       <Box pad="medium" gap="medium">
-        <CustomButton 
-          primary
-          text={t("SHARE_ALT")} 
-          onClick={() => history.push("/home")}
-        />
-        <CustomButton tertiary text={t("GO_BACK_HOME")} onClick={() => history.push("/home")} />
+        <Heading level={3} textAlign="center" margin="none">{t('SHARE_ALT')}</Heading>
+        <ShareLinks />
+        <CustomButton margin={{ top: "medium" }} tertiary text={t("GO_BACK_HOME")} onClick={() => history.push("/home")} />
       </Box>
     </Grid>
   );
