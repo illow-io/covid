@@ -22,6 +22,7 @@
     "express-promise-router": "3.0.3",
     "google-auth-library": "^5.10.1",
     "helmet": "3.21.3",
+    "morgan": "1.10.0",
     "regenerator-runtime": "0.13.5"
   },
   "devDependencies": {
