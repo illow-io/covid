@@ -1,15 +1,13 @@
 import AWS from 'aws-sdk';
 import config from '../config';
 
-AWS.config.update({
+const dynamodb = new AWS.DynamoDB({
   region: config.get('aws.region'),
   accessKeyId: config.get('aws.accessKeyID'),
   secretAccessKey: config.get('aws.secretAccessKey'),
   endpoint: config.get('aws.endpoint')
 });
-
-const dynamodb = new AWS.DynamoDB();
-const docClient = new AWS.DynamoDB.DocumentClient();
+const docClient = new AWS.DynamoDB.DocumentClient({ service: dynamodb });
 
 const tableExists = async (TableName) => {
   try {

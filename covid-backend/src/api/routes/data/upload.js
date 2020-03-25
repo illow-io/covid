@@ -25,7 +25,9 @@ router.post('/', async (req, res) => {
 
   const promises = Object.values(req.files).map(async (file) => {
     const checksum = Buffer.from(file.md5, 'hex').toString('base64');
-    await s3.putObject(file.name, { ContentMD5: checksum }, file.data);
+    const splittedName = file.name.split('.');
+    const ext = splittedName[splittedName.length - 1];
+    await s3.putObject(`${file.md5}.${ext}`, { ContentMD5: checksum }, file.data);
     await users.appendValue(req.currentUser.id, 'dataHashes', file.md5);
   });
   await Promise.all(promises);
