@@ -18,8 +18,12 @@ class AWSWrapper {
       .catch(() => this.promisify('getObject', { Key: key })); // making it retrocompatible
   }
 
-  putObject(key, obj) {
-    return this.promisify('putObject', { Key: key.toLowerCase(), Body: obj });
+  putObject(key, headers = {}, obj) {
+    return this.promisify('putObject', { Key: key.toLowerCase(), Body: obj, ...headers });
+  }
+
+  upload(key, obj) {
+    return this.promisify('upload', { Key: key.toLowerCase(), Body: obj });
   }
 
   async listObjectsAsIs(prefix) {

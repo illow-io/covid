@@ -23,10 +23,13 @@ router.post('/', async (req, res) => {
     return res.boom.badRequest('No files were uploaded.');
   }
 
-  const data = req.files.data;
+  const promises = Object.values(req.files).map(async (file) => {
+    const checksum = Buffer.from(file.md5, 'hex').toString('base64');
+    await s3.putObject(file.name, { ContentMD5: checksum }, file.data);
+    await users.appendValue(req.currentUser.id, 'dataHashes', file.md5);
+  });
+  await Promise.all(promises);
 
-  await s3.putObject(`${data.md5}.zip`, data.data);
-  await users.appendValue(req.currentUser.id, 'dataHashes', data.md5);
 
   res.json({ message: 'File uploaded!' });
 });
