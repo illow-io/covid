@@ -13,7 +13,7 @@ const config = convict({
   port: {
     doc: 'The port to bind',
     format: 'port',
-    default: 6000,
+    default: 9000,
     env: 'PORT',
     arg: 'port'
   },
@@ -36,6 +36,18 @@ const config = convict({
       default: env.npm_package_version
     }
   },
+  accessLog: {
+    format: {
+      doc: 'Access log format',
+      format: String,
+      default: 'combined' // See https://www.npmjs.com/package/morgan#predefined-formats
+    },
+    skip: {
+      doc: 'Whether to skip access log or not',
+      format: Boolean,
+      default: false
+    },
+  },
   aws: {
     region: {
       doc: 'AWS region',
@@ -52,7 +64,7 @@ const config = convict({
     endpoint: {
       doc: 'AWS endpoint',
       format: String,
-      default: 'http://localhost:8000',
+      default: 'http://localhost:9001',
       env: 'AWS_ENDPOINT'
     },
     accessKeyID: {
@@ -90,7 +102,7 @@ const config = convict({
   googleClientId: {
     doc: 'The google client Id',
     format: String,
-    default: 'wJalrXUtnFEMI-K7MDENG/bPxdfadLEKEY',
+    default: 'fakeClientID',
     env: 'GOOGLE_CLIENT_ID'
   }
 });
