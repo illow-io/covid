@@ -8,6 +8,7 @@ import use from '../../state/use';
 import api from '../../services/api';
 import withSiteLayout from '../../components/withSiteLayout';
 import CustomButton from '../../components/CustomButton';
+import SimpleLoader from '../../components/Loader/SimpleLoader/SimpleLoader';
 
 const SignIn = () => {
   const { t } = useTranslation();
@@ -32,16 +33,18 @@ const SignIn = () => {
             clientId={Config.googleClientId}
             scope="profile email openid"
             render={renderProps => (
-              <CustomButton
-                inverted
-                icon={<img src="/google.png" alt="google" style={{ width: "34px", height: "auto" }} />}
-                text={t("SIGN_IN_WITH_GOOGLE")}
-                size="16px"
-                pad="20px"
-                elevation="small"
-                onClick={renderProps.onClick}
-                disabled={renderProps.disabled}
-              />
+              renderProps.disabled 
+                ? <SimpleLoader /> 
+                : <CustomButton
+                      inverted
+                      icon={<img src="/google.png" alt="google" style={{ width: "34px", height: "auto" }} />}
+                      text={t("SIGN_IN_WITH_GOOGLE")}
+                      size="16px"
+                      pad="20px"
+                      elevation="small"
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                    />
             )}
             onSuccess={onSuccess}
             onFailure={onFailure}
