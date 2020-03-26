@@ -62,7 +62,7 @@ const Privacy = props => {
             <Box pad="large">
                 <FormPreviousLink color="#000" onClick={() => history.goBack()} />
 
-                <Heading level={5} color="#3b219e" margin={{ horizontal: "none", top: "medium", bottom: "small" }} onClick={(swithcLanguage) => setSwitchLanguage(!switchLanguage)}>
+                <Heading level={5} color="#3b219e" margin={{ horizontal: "none", top: "medium", bottom: "small" }} onClick={() => setSwitchLanguage(!switchLanguage)}>
                     {switchLanguage ? `Español` : `English`}
                 </Heading>
 
