@@ -11,5 +11,5 @@ const {
 
 initStores().then(() => {
   app.listen({ port, host }, () =>
-    logger.log(`${name} listening on ${host}:${port} (${env})`));
+    logger.info(`${name} listening on ${host}:${port} (${env})`));
 });
