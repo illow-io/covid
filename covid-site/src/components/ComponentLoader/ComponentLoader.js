@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Image from "react-bootstrap/Image";
+import { Image } from "grommet";
 import "./ComponentLoader.css";
 
 export default class ComponentLoader extends Component {
