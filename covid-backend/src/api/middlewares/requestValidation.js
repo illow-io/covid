@@ -6,7 +6,7 @@ export default (validate, property) => {
     if (!error) {
       next();
     } else {
-      logger.error(error);
+      logger.error('Invalid parameters: ', error);
       return res.boom.badRequest('Invalid parameters.');
     }
   };
