@@ -29,7 +29,7 @@ const Sponsors = ({ showTitle = true, ...props }) => {
   const { t } = useTranslation();
 
   return (
-    <Grid pad="large" gap="medium" {...props} >
+    <Grid pad="large" gap="small" {...props} >
       {showTitle && <Heading level={3} margin={{ horizontal: "xlarge", vertical: "none" }} size="medium" textAlign="center">{t('HOME_SPONSORS')}</Heading>}
       <Grid columns={{ count: sponsors.length, size: "auto" }} gap="xsmall" align="center" justify="center">
         {sponsors.map(sponsor => (

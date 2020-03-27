@@ -4,7 +4,7 @@ import { Box, Grid, Text, Heading } from "grommet";
 import { useTranslation } from "react-i18next";
 import withSiteLayout from "../../components/withSiteLayout";
 import CustomButton from "../../components/CustomButton";
-import ComponentLoader from "../../components/ComponentLoader";
+import SimpleLoader from "../../components/Loader/SimpleLoader/SimpleLoader";
 import api from '../../services/api';
 
 const Upload = () => {
@@ -125,7 +125,7 @@ const Upload = () => {
         pad={{ horizontal: "large", vertical: "medium" }}
       >
         {loading ?
-          <ComponentLoader /> :
+          <SimpleLoader /> :
           <CustomButton
             primary
             text={t("ACCEPT")}

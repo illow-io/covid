@@ -32,7 +32,6 @@ router.post('/', async (req, res) => {
   });
   await Promise.all(promises);
 
-
   res.json({ message: 'File uploaded!' });
 });
 

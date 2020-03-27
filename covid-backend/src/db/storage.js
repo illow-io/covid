@@ -5,7 +5,7 @@ const dynamodb = new AWS.DynamoDB({
   region: config.get('aws.region'),
   accessKeyId: config.get('aws.accessKeyID'),
   secretAccessKey: config.get('aws.secretAccessKey'),
-  endpoint: config.get('aws.endpoint')
+  endpoint: config.get('aws.dynamoEndpoint')
 });
 const docClient = new AWS.DynamoDB.DocumentClient({ service: dynamodb });
 

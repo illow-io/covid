@@ -24,7 +24,7 @@ const Home = props => {
         <Map />
         <Steps />
         <Share />
-        <Sponsors />
+        <Sponsors margin={{ bottom: closedFooter ? "none" : "60px" }} />
       </Grid>
 
       <Box style={{width: "100%", position: "fixed", bottom: 0}}>
