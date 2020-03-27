@@ -56,37 +56,6 @@ const parseCsv = async (path, dateFrom, pageSize) => {
   }
   count += await store([...pointsToPut]);
   logger.info(`Parsing file ${path} ended. ${count} points added to the SeedsLocationHistory DB`);
-  // fs.createReadStream(path)
-  //   .pipe(csv({ separator: '\t' }))
-  //   .on('data', async (row) => {
-  //     const { 
-  //       'hex(SHA1(advertiser_id))': advertiserId, 
-  //       timestamp: rawTimestamp, 
-  //       latitude: rawLatitude,
-  //       longitude: rawLongitude,
-  //       country
-  //     } = row;
-  //     const timestamp = Number(rawTimestamp);
-  //     const latitude = Number(rawLatitude);
-  //     const longitude = Number(rawLongitude);
-  //     if (timestamp > dateFrom) {
-  //       const uuid = toUuid(`${advertiserId}:${timestamp}`);
-  //       pointsToPut.push({
-  //         id: uuid,
-  //         point: { latitude, longitude },
-  //         data: {
-  //           advertiserId: { S: advertiserId },
-  //           timestamp: { S: rawTimestamp },
-  //           country: { S: country }
-  //         }
-  //       });
-  //       if (pointsToPut.length === pageSize) {
-  //         await store([...pointsToPut]);
-  //         pointsToPut = [];
-  //       }
-  //     }
-  //   })
-  //   .on('end', () => logger.info(`Parsing file ${path} ended`));  
 }
 
 const [path, from, pageSize] = process.argv.slice(2);
