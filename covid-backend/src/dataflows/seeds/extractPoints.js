@@ -22,13 +22,13 @@ const parseCsv = async (path, dateFrom, pageSize) => {
       // logger.debug(records);
     });
     return records.length;
-  }
-  
+  };
+
   const readable = fs.createReadStream(path).pipe(csv({ separator: '\t' }));
   for await (const row of readable) {
-    const { 
-      'hex(SHA1(advertiser_id))': advertiserId, 
-      timestamp: rawTimestamp, 
+    const {
+      'hex(SHA1(advertiser_id))': advertiserId,
+      timestamp: rawTimestamp,
       latitude: rawLatitude,
       longitude: rawLongitude,
       country
@@ -56,7 +56,7 @@ const parseCsv = async (path, dateFrom, pageSize) => {
   }
   count += await store([...pointsToPut]);
   logger.info(`Parsing file ${path} ended. ${count} points added to the SeedsLocationHistory DB`);
-}
+};
 
 const [path, from, pageSize] = process.argv.slice(2);
 parseCsv(path, Date.parse(from) / 1000, pageSize ? Number(pageSize) : 25);

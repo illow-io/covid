@@ -27,11 +27,11 @@ import { GeoStore } from './geoStorage';
  * @property {?Array<string>} dataHashes MD5 hashes for each data package uploaded by the user
  * @property {?Array<CovidStatus>} covidStatuses Covid statuses reported by the user
  * @property {?Array<CovidRiskScore>} riskScores User Covid risk scores in ascending chronological order (last is newest).
- * 
+ *
  * @typedef GeoPoint
  * @property {number} latitude
  * @property {number} longitude
- * 
+ *
  * @typedef GeoData
  * @property {number} timestamp
  * @property {string} country
