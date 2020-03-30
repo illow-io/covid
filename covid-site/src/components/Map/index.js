@@ -1,23 +1,37 @@
-import React, { useState } from 'react';
-import ReactMapGL from 'react-map-gl';
-import Config from '../../Config';
-import mapStyles from '../../assets/mapStyle.json';
+import React, { useState } from "react";
+import Config from "../../Config";
+import mapStyles from "../../assets/mapStyle.json";
+import geojsonMock from "../../services/mockData/hotSpots.json";
 
-export default function Map() {
+import MapGL, { Source, Layer } from "react-map-gl";
+
+const circleLayer = {
+  id: "covid_risk-point-layer",
+  type: "circle",
+  paint: {
+    "circle-radius": 4,
+    "circle-color": "#007cbf"
+  }
+};
+
+export default function Map({ data }) {
   const [viewport, setViewport] = useState({
     width: 800,
     height: 600,
-    latitude: -34.6131516,
-    longitude: -58.3772316,
-    zoom: 10
+    latitude: 9.318021,
+    longitude: -70.603439,
+    zoom: 8
   });
 
   return (
-    <ReactMapGL
+    <MapGL
       mapboxApiAccessToken={Config.mapboxAccessToken}
-      mapStyle={mapStyles}
       {...viewport}
-      onViewportChange={setViewport}
-    />
+      mapStyle={mapStyles}
+      onViewportChange={setViewport}>
+      <Source type='geojson' data={geojsonMock}>
+        <Layer {...circleLayer} />
+      </Source>
+    </MapGL>
   );
 }
