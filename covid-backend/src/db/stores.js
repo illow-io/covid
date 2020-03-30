@@ -1,4 +1,5 @@
 import { Store } from './storage';
+import { GeoStore } from './geoStorage';
 /**
  * @typedef {import('./storage').DynamoStore<K,V>} DynamoStore<K,V>
  * @template K, V
@@ -26,14 +27,25 @@ import { Store } from './storage';
  * @property {?Array<string>} dataHashes MD5 hashes for each data package uploaded by the user
  * @property {?Array<CovidStatus>} covidStatuses Covid statuses reported by the user
  * @property {?Array<CovidRiskScore>} riskScores User Covid risk scores in ascending chronological order (last is newest).
+ *
+ * @typedef GeoPoint
+ * @property {number} latitude
+ * @property {number} longitude
+ *
+ * @typedef GeoData
+ * @property {number} timestamp
+ * @property {string} country
  */
 
 /**
  * @type {DynamoStore<string, User>}
  * @desc key: User ID created by Google Sign in
- * */
+ */
 export const users = new Store('Users');
+
+export const seedsLocationHistory = new GeoStore('SeedsLocationHistory');
 
 export const initStores = async () => {
   await users.init();
+  await seedsLocationHistory.init();
 };
