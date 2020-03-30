@@ -18,8 +18,8 @@ const Score = () => {
 
   useEffect(() => {
     async function fetchHotSpots() {
-      const response = await api.get("/data/hot-spots");
-      setMapData(response);
+      const { data } = await api.get("/data/hot-spots");
+      setMapData(data);
     }
     fetchHotSpots();
   }, []);
