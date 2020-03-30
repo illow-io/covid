@@ -1,0 +1,46 @@
+.SideNavComponent {
+    background-color: #233064;
+    max-width: 368px;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    .LogoContainer {
+        display: table;
+        height: 75%;
+        width: 100%;
+
+        .Logo {
+            width: 150px;
+            height: 150px;
+            display: table-cell;
+            vertical-align: middle;
+            margin: 0 auto;
+        }
+
+    }
+    
+    .LogoFooterContainer {
+        display: table;
+        height: 100%;
+        width: 100%;
+
+        .Logo {
+            width: 150px;
+            height: 150px;
+            display: table-cell;
+            vertical-align: middle;
+            margin: 0 auto;
+
+            .FooterText {
+                text-align: center;
+                font-size: 14px;
+                line-height: 20px;
+                color: #fff;
+                margin-bottom: 8px;
+            }
+        }
+    }
+}

@@ -7,6 +7,9 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
+    "carbon-components": "^10.10.3",
+    "carbon-components-react": "^7.10.3",
+    "carbon-icons": "^7.0.7",
     "grommet": "2.11.2",
     "grommet-icons": "4.4.0",
     "i18next": "19.3.3",
@@ -22,6 +25,7 @@
     "react-router-dom": "5.1.2",
     "react-scripts": "3.4.1",
     "react-share": "^4.1.0",
+    "sass": "^1.26.3",
     "styled-components": "5.0.1",
     "use-global-hook": "0.1.12"
   },
