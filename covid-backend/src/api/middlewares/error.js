@@ -6,8 +6,10 @@ import logger from '../../utils/logger';
 export const errorHandler = (err, _req, res, _next) => {
   logger.error(err.stack);
   if (err.failedValidation) {
+    logger.error('validation failed: unpocessable data');
     res.boom.badData('Unprocessable');
   } else {
+    logger.error('bad implementation: ', err.message);
     res.boom.badImplementation(err.message);
   }
 };
@@ -17,6 +19,7 @@ export const errorHandler = (err, _req, res, _next) => {
  */
 export const notFoundHandler = (req, res, next) => {
   if (!req.route) {
+    logger.error('route not found');
     res.boom.notFound();
   } else {
     next();
