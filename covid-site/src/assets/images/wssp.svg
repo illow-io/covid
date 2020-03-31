@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <filter id="prefix__a" width="113.6%" height="137.8%" x="-6.8%" y="-18.9%" filterUnits="objectBoundingBox">
+            <feOffset in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="8"/>
+            <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0.749019608 0 0 0 0 0.835294118 0 0 0 0 0.874509804 0 0 0 0.5 0"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <path id="prefix__b" d="M17.05 2.927C14.968.844 12.13-.206 9.148.034 5.14.356 1.628 3.143.452 6.988c-.84 2.747-.487 5.615.88 7.984L.037 19.274c-.124.413.253.802.67.69l4.502-1.206c1.459.796 3.1 1.215 4.772 1.216h.004c4.194 0 8.068-2.565 9.409-6.54 1.306-3.874.34-7.82-2.344-10.507zM14.87 13.55c-.208.583-1.226 1.144-1.684 1.185-.458.042-.887.207-2.994-.623-2.537-1-4.138-3.6-4.262-3.766-.125-.167-1.019-1.353-1.019-2.58 0-1.228.645-1.832.874-2.081.229-.25.499-.312.666-.312.166 0 .333 0 .478.006.178.007.375.016.561.431.222.494.707 1.727.77 1.852.061.125.103.271.02.437-.083.166-.125.27-.249.416-.125.146-.262.325-.374.437-.125.124-.254.26-.11.509.146.25.646 1.067 1.388 1.727.954.85 1.757 1.113 2.006 1.239.25.125.395.104.541-.063.146-.166.624-.728.79-.978.166-.25.333-.208.562-.125.229.083 1.455.687 1.704.812.25.125.416.187.478.291.062.103.062.603-.146 1.186z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd" filter="url(#prefix__a)" transform="translate(-216 -102)">
+        <g transform="translate(218 104)">
+            <mask id="prefix__c" fill="#fff">
+                <use xlink:href="#prefix__b"/>
+            </mask>
+            <use fill="#000" fill-rule="nonzero" xlink:href="#prefix__b"/>
+            <g fill="#233064" mask="url(#prefix__c)">
+                <path d="M0 30L30 30 30 0 0 0z" transform="translate(-5 -5)"/>
+            </g>
+        </g>
+    </g>
+</svg>
