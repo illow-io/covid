@@ -14,6 +14,7 @@
     "start": "nodemon --exec babel-node src/index.js"
   },
   "dependencies": {
+    "@mapbox/togeojson": "0.16.0",
     "aws-sdk": "2.643.0",
     "body-parser": "1.19.0",
     "convict": "5.2.0",
@@ -28,9 +29,12 @@
     "google-auth-library": "5.10.1",
     "helmet": "3.21.3",
     "morgan": "1.10.0",
+    "nodes2ts": "^2.0.0",
     "regenerator-runtime": "0.13.5",
+    "uuid": "^7.0.2",
     "uuid-by-string": "3.0.2",
-    "winston": "3.2.1"
+    "winston": "3.2.1",
+    "xmldom": "0.3.0"
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",

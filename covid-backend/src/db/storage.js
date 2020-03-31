@@ -22,16 +22,20 @@ const createTable = async (
   TableName,
   KeySchema = [{ AttributeName: 'id', KeyType: 'HASH' }],
   AttributeDefinitions = [{ AttributeName: 'id', AttributeType: 'S' }],
+  LocalSecondaryIndexes = null
 ) => {
   const params = {
     TableName,
     KeySchema,
     AttributeDefinitions,
+    LocalSecondaryIndexes,
     ProvisionedThroughput: {
       ReadCapacityUnits: 10,
       WriteCapacityUnits: 10
     }
   };
+  console.log('Creating table with schema:');
+  console.dir(params, { depth: null });
 
   await dynamodb.createTable(params).promise();
 }
@@ -51,17 +55,24 @@ export class Store {
   constructor(
     tableName,
     primaryKeySchema = [{ AttributeName: 'id', KeyType: 'HASH' }],
-    indexes = [{ AttributeName: 'id', AttributeType: 'S' }],
+    attributeDefinitions = [{ AttributeName: 'id', AttributeType: 'S' }],
+    localSecondaryIndexes = null
   ) {
     this.tableName = tableName;
     this.primaryKeySchema = primaryKeySchema;
-    this.indexes = indexes;
+    this.attributeDefinitions = attributeDefinitions;
+    this.localSecondaryIndexes = localSecondaryIndexes;
     this.primaryKey = primaryKeySchema[0].AttributeName;
   }
 
   init = async () => {
     if (!(await tableExists(this.tableName))) {
-      await createTable(this.tableName, this.primaryKeySchema, this.indexes);
+      await createTable(
+        this.tableName, 
+        this.primaryKeySchema, 
+        this.attributeDefinitions,
+        this.localSecondaryIndexes
+      );
     }
   };
 
@@ -85,6 +96,18 @@ export class Store {
       }
     };
     return docClient.put(params).promise();
+  }
+
+  batchStore = async (records) => { 
+    const params = {
+      RequestItems: {
+        [this.tableName]: records.map((record) => ({
+          PutRequest: { Item: record }
+        }))
+      }
+    };
+    console.dir(params, { depth: null });
+    return docClient.batchWrite(params).promise();
   }
 
   upsert = async (id, data) => {
