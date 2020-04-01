@@ -6,7 +6,7 @@
       "properties": {},
       "geometry": {
         "type": "Point",
-        "coordinates": [-34.576518, -58.471673]
+        "coordinates": [-58.471673, -34.576518]
       }
     },
     {
@@ -14,7 +14,7 @@
       "properties": {},
       "geometry": {
         "type": "Point",
-        "coordinates": [-34.565311, -58.454457]
+        "coordinates": [-58.454457, -34.565311]
       }
     },
     {
@@ -22,7 +22,7 @@
       "properties": {},
       "geometry": {
         "type": "Point",
-        "coordinates": [-34.579343, -58.435193]
+        "coordinates": [-58.435193, -34.579343]
       }
     },
     {
@@ -30,7 +30,7 @@
       "properties": {},
       "geometry": {
         "type": "Point",
-        "coordinates": [-34.595821, -58.421284]
+        "coordinates": [-58.421284, -34.595821]
       }
     },
     {
@@ -38,7 +38,47 @@
       "properties": {},
       "geometry": {
         "type": "Point",
-        "coordinates": [-34.607493, -58.411784]
+        "coordinates": [-58.411784, -34.607493]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ezeiza_terminal_c_starbucks"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-58.5409598, -34.813249]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ezeiza_terminal_c_mcdonalds"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-58.5403078, -34.813886]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ezeiza_terminal_c_havana"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-58.5395732, -34.8139359]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ezeiza_terminal_c_farmacity"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-58.5390072, -34.8138956]
       }
     }
   ]
