@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button } from 'carbon-components-react';
 import './CardComponent.scss';
-import GoogleIcon from '../../assets/images/google.png'
 
 const CardComponent = props => {
     return (

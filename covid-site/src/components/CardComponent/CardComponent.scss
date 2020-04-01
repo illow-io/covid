@@ -35,8 +35,17 @@
 
 @media (min-width: 1300px) {
     .CardComponent {
+        box-shadow: none;
         .CopyButtonsContainer {
-            padding: 32px 46px;
+            padding: 24px;
+            .CardTitle {
+                line-height: 22px;
+                font-size: 16px;
+            }
+            .CardText {
+                font-size: 14px;
+                line-height: 18px;
+            }
         }
     }
 }
