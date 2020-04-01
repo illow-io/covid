@@ -2,28 +2,28 @@ import winston from 'winston';
 import config from '../config';
 
 const logger = winston.createLogger({
-  levels: winston.config.syslog.levels,
+  levels: winston.config.syslog.levels
 });
 const buildFormatter = () =>
   winston.format.combine(
     winston.format.simple(),
     winston.format.timestamp(),
-    winston.format.printf(info => `${info.timestamp} [${info.level}]: ${info.message}`),
+    winston.format.printf(info => `${info.timestamp} [${info.level}]: ${info.message}`)
   );
 
 switch (config.get('env')) {
   case 'production':
     logger.add(new winston.transports.Console({ handleExceptions: true }));
     logger.add(new winston.transports.File({
-      filename: "/logs/combined.log",
+      filename: '/logs/combined.log',
       handleExceptions: true,
-      format: buildFormatter(),
+      format: buildFormatter()
     }));
     logger.add(new winston.transports.File({
-      filename: "/logs/error.log",
+      filename: '/logs/error.log',
       handleExceptions: true,
       level: 'error',
-      format: buildFormatter(),
+      format: buildFormatter()
     }));
     break;
   case 'development':
@@ -34,8 +34,8 @@ switch (config.get('env')) {
         winston.format.simple(),
         winston.format.colorize(),
         winston.format.timestamp({ format: 'HH:mm:ss.SSS' }),
-        winston.format.printf(info => `${info.timestamp} [${info.level}]: ${info.message}`),
-      ),
+        winston.format.printf(info => `${info.timestamp} [${info.level}]: ${info.message}`)
+      )
     }));
     break;
   case 'test':
@@ -46,7 +46,7 @@ switch (config.get('env')) {
 
 module.exports = logger;
 module.exports.stream = {
-  write(message) {
+  write (message) {
     logger.info(message);
-  },
+  }
 };

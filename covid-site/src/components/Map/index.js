@@ -8,7 +8,7 @@ const circleLayer = {
   id: "covid_risk-point-layer",
   type: "circle",
   paint: {
-    "circle-radius": 4,
+    "circle-radius": 8,
     "circle-color": "#007cbf"
   }
 };
@@ -19,8 +19,13 @@ export default function Map({ data }) {
     height: 600,
     latitude: -38.4160957,
     longitude: -63.6166725,
-    zoom: 8
+    zoom: 4
   });
+
+  const features = data || {
+    type: 'FeatureCollection',
+    features: []
+  };
 
   return (
     <MapGL
@@ -28,7 +33,7 @@ export default function Map({ data }) {
       {...viewport}
       mapStyle={mapStyles}
       onViewportChange={setViewport}>
-      <Source type='geojson' data={data}>
+      <Source type='geojson' data={features}>
         <Layer {...circleLayer} />
       </Source>
     </MapGL>

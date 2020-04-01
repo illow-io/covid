@@ -31,6 +31,7 @@ const SignIn = () => {
         <Box style={{marginTop: '150px'}}>
           <GoogleLogin
             clientId={Config.googleClientId}
+            isSignedIn={true}
             scope="profile email openid"
             render={renderProps => (
               renderProps.disabled 
