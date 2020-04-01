@@ -10,8 +10,7 @@ const CardComponent = props => {
             <div className="CopyButtonsContainer">
                 {props.cardTitle && <p className="CardTitle">{props.cardTitle}</p>}
                 {props.cardText && <p className="CardText">{props.cardText}</p>}
-                {props.primaryCardButton && <Button style={{backgroundImage: `url(${GoogleIcon})`}} className="GoogleButton">{props.primaryCardButton}</Button>}
-                {props.secondaryCardButton && <Button className="LoginButton">{props.secondaryCardButton}</Button>}
+                {props.primaryCardButton && <Button className="ActionButtonCards">{props.primaryCardButton}</Button>}
             </div>
         </div>
     );

@@ -1,0 +1,41 @@
+.HeaderComponent {
+
+    .ColorLine {
+        background-color: #233064;
+        height: 40px;
+        width: 100%;
+    }
+
+    .IsologoContainer {
+        width: 100%;
+        background-color: #6524fe;
+        display: table;
+        height: 64px;
+
+        .ImgContainer {
+            display: table-cell;
+            vertical-align: middle;
+
+            img {
+                width: 200px;
+                margin: 0 auto;
+                display: block;
+            }
+        }
+    }
+}
+
+@media (min-width: 1300px) {
+    .HeaderComponent {
+        .ColorLine {
+            display: none;
+        }
+        .IsologoContainer {
+            .ImgContainer {
+                img {
+                    margin: auto;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+.FooterSideComponent {
+    height: 188px;
+    width: 100%;
+    background-color: #32417f;
+    margin-top: 10px;
+    .LogoFooterContainer {
+        display: table;
+        height: 100%;
+        width: 100%;
+
+        .Logo {
+            width: 150px;
+            height: 150px;
+            display: table-cell;
+            vertical-align: middle;
+            margin: 0 auto;
+            .AlignmentFooter {
+                .FooterText {
+                    text-align: center;
+                    font-size: 14px;
+                    line-height: 20px;
+                    color: #fff;
+                    margin-bottom: 8px;
+                }
+            }
+        }
+    }
+}

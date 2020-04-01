@@ -1,7 +1,15 @@
 .MapComponent {
-    img {
-        width: 95%;
+    display: none;
+}
+
+@media (min-width: 1300px) {
+    .MapComponent {
         display: block;
-        margin: 0 auto;
+        position: fixed;
+        img {
+            width: 80%;
+            display: block;
+            margin: 0 auto;
+        }
     }
 }

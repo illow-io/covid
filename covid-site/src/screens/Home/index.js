@@ -6,6 +6,7 @@ import SideNavComponent from '../../components/SideNavComponent/SideNavComponent
 import CardComponent from '../../components/CardComponent/CardComponent';
 import CTACardImage from '../../assets/images/discover-your-risk-home.png';
 import RRSSComponent from '../../components/RRSSComponent/RRSSComponent';
+import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
 
 import CustomButton from '../../components/CustomButton';
 import StickyFooter from '../../components/StickyFooter';
@@ -14,6 +15,7 @@ import Steps from './Steps';
 import Share from './Share';
 import Sponsors from '../../components/Sponsors';
 import MapComponent from '../../components/MapComponent/MapComponent';
+import FooterSideComponent from '../../components/FooterSideComponent/FooterSideComponent';
 
 const Home = props => {
     const { t } = useTranslation();
@@ -21,35 +23,40 @@ const Home = props => {
     const history = useHistory();
 
     return (
-        <Grid fullWidth sm={1} md={4}>
-            <Row>
-                <Column sm={1} md={4} lg={4}>
-                    <SideNavComponent />
-                </Column>
-                <Column sm={1} md={4} lg={4}>
-                    <CardComponent 
-                        cardImage={CTACardImage}
-                        cardImageAlt="Descubrí cual es tu riesgo de COVID-19"
-                        cardTitle="Descubrí cual es tu riesgo de COVID-19"
-                        cardText="Con tu historial de Ubicaciones y Geolocalización"
-                        primaryCardButton={t("SIGN_IN_WITH_GOOGLE")}
-                        secondaryCardButton="Iniciar Sesión"
-                        />
-                    <CardComponent
-                        cardTitle="¿Cómo funiona MyCovidRisk?"
-                        cardText="Predecimos la propagación del virus basándonos en el contacto con otras personas en riesgo y el tiempo en zonas contaminadas."
-                        secondaryCardButton="Quiero saber más"
-                        />
-                    <RRSSComponent 
-                        cardTitle="Seamos más rápidos que el virus"
-                        cardText="Compartilo con todos los que quieran participar."
-                        />
-                </Column>
-                <Column sm={1} md={4} lg={4}>
-                    <MapComponent />
-                </Column>
-            </Row>
-        </Grid>
+        <>
+            <HeaderComponent />
+            <Grid fullWidth sm={12} md={4}>
+                <Row>
+                    <Column sm={12} md={4} lg={4}>
+                        <SideNavComponent />
+                    </Column>
+                    <Column sm={12} md={4} lg={4}>
+                        <CardComponent 
+                            cardImage={CTACardImage}
+                            cardImageAlt="Descubrí cual es tu riesgo de COVID-19"
+                            cardTitle="Descubrí cual es tu riesgo de COVID-19"
+                            cardText="Con tu historial de Ubicaciones y Geolocalización"
+                            primaryCardButton={t("SIGN_IN_WITH_GOOGLE")}
+                            secondaryCardButton="Iniciar Sesión"
+                            />
+                        <CardComponent
+                            cardTitle="¿Cómo funiona MyCovidRisk?"
+                            cardText="Predecimos la propagación del virus basándonos en el contacto con otras personas en riesgo y el tiempo en zonas contaminadas."
+                            secondaryCardButton="Quiero saber más"
+                            primaryCardButton={t("SIGN_IN_WITH_GOOGLE")}
+                            />
+                        <RRSSComponent 
+                            cardTitle="Seamos más rápidos que el virus"
+                            cardText="Compartilo con todos los que quieran participar."
+                            />
+                    </Column>
+                    <Column sm={12} md={4} lg={4}>
+                        <MapComponent />
+                    </Column>
+                </Row>
+            </Grid>
+            <FooterSideComponent />
+        </>
     );
 };
 

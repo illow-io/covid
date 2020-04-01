@@ -11,9 +11,9 @@ const RRSSComponent = props => {
                 {props.cardTitle && <p className="CardTitle">{props.cardTitle}</p>}
                 {props.cardText && <p className="CardText">{props.cardText}</p>}
                 <div className="SocialMediaIconsContainer">
-                    <img src={FacebookLogo} />
-                    <img src={WhatsappLogo} />
-                    <img src={TwitterLogo} />
+                    <img src={FacebookLogo} alt="Share with Facebook"/>
+                    <img src={WhatsappLogo} alt="Share with Whatsapp"/>
+                    <img src={TwitterLogo} alt="Share with Twitter"/>
                 </div>
             </div>
         </div>

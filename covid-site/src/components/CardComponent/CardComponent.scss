@@ -1,46 +1,42 @@
 .CardComponent {
-    text-align: center;
+    text-align: left;
     background-color: #ffffff;
     color: #233064;
     margin-top: 16px;
     box-shadow: 0 0 16px 0 rgba(191, 213, 223, 0.5);
-
+    position: relative;
     img {
         width: 100%;
     }
     .CopyButtonsContainer {
-        padding: 32px 46px;
+        padding: 10px;
+        height: 180px;
+        .ActionButtonCards {
+            background-color: #6524fe;
+            padding-left: 24px;
+            color: #eef8fc;
+            font-weight: bold;
+            width: 100%;
+            max-width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
         .CardTitle {
             font-weight: bold;
             font-size: 20px;
         }
         .CardText {
             line-height: 24px;
-            margin-bottom: 24px;
+            margin-top: 5px;
         }
-        .GoogleButton {
-            display: block;
-            margin: 32px auto 10px;
-            background-color: #ffffff;
-            background-position: 20px center;
-            background-size: 24px;
-            background-repeat: no-repeat;
-            font-size: 16px;
-            color: #233064;
-            box-shadow: 0 0 24px 0 rgba(191, 213, 223, 0.3);
-            padding: 0px 32px 0 48px;
-            width: 222px;
-        }
-        .LoginButton {
-            display: block;
-            color: #233064;
-            font-weight: bold;
-            margin: 0 auto;
-            background-color: rgba(101, 36, 254, 0.1);
-            font-size: 16px;
-            width: 222px;
-            padding: 0;
-            text-align: center;
+    }
+}
+
+@media (min-width: 1300px) {
+    .CardComponent {
+        .CopyButtonsContainer {
+            padding: 32px 46px;
         }
     }
 }
