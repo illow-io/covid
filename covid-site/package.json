@@ -24,6 +24,7 @@
     "react-scripts": "3.4.1",
     "react-share": "^4.1.0",
     "styled-components": "5.0.1",
+    "use-api-polling": "0.1.4",
     "use-global-hook": "0.1.12"
   },
   "scripts": {

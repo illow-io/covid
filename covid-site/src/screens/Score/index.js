@@ -8,13 +8,23 @@ import ShareLinks from "../../components/Share";
 import Map from "../../components/Map";
 import "./circle.css";
 import api from "../../services/api";
+import useAPIPolling from 'use-api-polling'
 
 const Score = () => {
   const score = undefined;
   const { t } = useTranslation();
   const history = useHistory();
 
-  const [mapData, setMapData] = useState();
+  const defaultLayerData = { type: "FeatureCollection", features: [] };
+  const [mapData, setMapData] = useState(defaultLayerData);
+  const userLocationHistory = useAPIPolling({
+    fetchFunc: async () => {
+      const { data } = await api.get("/users/me/location-history")
+      return data;
+    },
+    initialState: defaultLayerData,
+    delay: 5000
+  })
 
   useEffect(() => {
     async function fetchHotSpots() {
@@ -54,7 +64,39 @@ const Score = () => {
           </Text>
         </Box>
         <Box pad='medium' align='center'>
-          <Map data={mapData} />
+          <Map layers={[{
+            data: mapData,
+            config: {
+              id: "covid_risk-hot-spots-layer",
+              type: "circle",
+              paint: {
+                "circle-radius": 8,
+                "circle-color": "#233064"
+              }
+            }
+          }, {
+            data: userLocationHistory,
+            config: {
+              id: "covid_risk-user-location-linestring-layer",
+              type: "line",
+              filter: ["==", ["geometry-type"], "LineString"],
+              paint: {
+                "line-color": "#eef8fc",
+                "line-width": 6
+              }
+            }
+          }, {
+            data: userLocationHistory,
+            config: {
+              id: "covid_risk-user-location-point-layer",
+              type: "circle",
+              filter: ["==", ["geometry-type"], "Point"],
+              paint: {
+                "circle-radius": 4,
+                "circle-color": "#3fecbd"
+              }
+            }
+          }]} />
         </Box>
 
         {/* <Box background="#c6f3cf" pad="medium" round="small" margin="medium">
