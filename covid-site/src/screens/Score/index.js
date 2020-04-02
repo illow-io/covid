@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Box, Heading, Text, Grid } from "grommet";
 import { useTranslation } from "react-i18next";
+import calculateCenter from '@turf/center';
 import withSiteLayout from "../../components/withSiteLayout";
 import CustomButton from "../../components/CustomButton";
 import ShareLinks from "../../components/Share";
 import Map from "../../components/Map";
 import "./circle.css";
 import api from "../../services/api";
-import useAPIPolling from 'use-api-polling'
 
 const Score = () => {
   const score = undefined;
@@ -16,15 +16,11 @@ const Score = () => {
   const history = useHistory();
 
   const defaultLayerData = { type: "FeatureCollection", features: [] };
+  const [mapCenter, setMapCenter] = useState([
+    -58.51662295, -34.5468697
+  ]);
   const [mapData, setMapData] = useState(defaultLayerData);
-  const userLocationHistory = useAPIPolling({
-    fetchFunc: async () => {
-      const { data } = await api.get("/users/me/location-history")
-      return data;
-    },
-    initialState: defaultLayerData,
-    delay: 5000
-  })
+  const [userLocationHistory, setUserLocationHistory] = useState(defaultLayerData);
 
   useEffect(() => {
     async function fetchHotSpots() {
@@ -33,6 +29,16 @@ const Score = () => {
     }
     fetchHotSpots();
   }, []);
+
+  useEffect(() => {
+    async function fetchLocationHistory() {
+      const { data } = await api.get("/users/me/location-history")
+      setUserLocationHistory(data);
+      const { geometry: { coordinates } } = calculateCenter(data);
+      setMapCenter(coordinates);
+    }
+    fetchLocationHistory();
+  }, [])
 
   return (
     <Grid rows={["flex", "auto"]}>
@@ -64,7 +70,7 @@ const Score = () => {
           </Text>
         </Box>
         <Box pad='medium' align='center'>
-          <Map layers={[{
+          <Map center={mapCenter} layers={[{
             data: mapData,
             config: {
               id: "covid_risk-hot-spots-layer",

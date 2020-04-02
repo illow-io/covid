@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@turf/center": "6.0.1",
     "axios": "^0.19.2",
     "grommet": "2.11.2",
     "grommet-icons": "4.4.0",
@@ -24,7 +25,6 @@
     "react-scripts": "3.4.1",
     "react-share": "^4.1.0",
     "styled-components": "5.0.1",
-    "use-api-polling": "0.1.4",
     "use-global-hook": "0.1.12"
   },
   "scripts": {
