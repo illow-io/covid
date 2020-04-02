@@ -31,6 +31,18 @@ const httpMethods = METHODS.map(
     })
 );
 
+instance.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.isAxiosError) {
+      const { status } = error.response || {};
+      if (status === 401) {
+        localStorage.removeItem('token');
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 const uploadFile = async (url, fileName, file) => {
   const data = new FormData();
   data.append('data', file, fileName);
@@ -46,7 +58,7 @@ export const [get, put, post, patch, del, head, options] = httpMethods;
 
 export const authenticate = async accessToken => {
   token = accessToken;
-  const { status } = await post('/users');
+  const { status } = (await post('/users')) || {};
   if (status === 202) {
     localStorage.setItem('token', accessToken);
   }
