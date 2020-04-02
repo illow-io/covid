@@ -2,26 +2,46 @@ import tj from '@mapbox/togeojson';
 import { DOMParser } from 'xmldom';
 
 import { usersLocationHistory } from '../db/stores';
-import { NotFoundError } from '../utils/errors';
-
-const NoLocationHistory = { geoJsonData: { S: null } };
 
 export const storeLocationHistory = async (userId, kmlData) => {
   const kml = (new DOMParser()).parseFromString(kmlData);
   const converted = tj.kml(kml);
 
-  return usersLocationHistory.store(userId, {
-    geoJsonFeatures: { S: JSON.stringify(converted.features) }
+  const itemsToStore = converted.features.map(({ type, geometry, properties }) => {
+    return {
+      id: userId,
+      timestamp: Date.parse(properties.timespan.begin),
+      geoJsonFeature: {
+        M: {
+          type: { S: type },
+          geometry: {
+            M: {
+              type: { S: geometry.type },
+              coordinates: { NN: geometry.coordinates }
+            }
+          }
+        }
+      }
+    };
   });
+
+  return usersLocationHistory.batchStore(itemsToStore);
 };
 
 export const fetchLocationHistory = async (userId) => {
-  const { Item: item = NoLocationHistory } = await usersLocationHistory.fetch(userId);
-  const { geoJsonFeatures: { S: geoJsonFeatures } } = item;
-  if (!geoJsonFeatures) throw new NotFoundError('No GeoJSON data found');
+  const { Items: items } = await usersLocationHistory.query({
+    KeyConditionExpression: 'id = :hkey',
+    ExpressionAttributeValues: { ':hkey': userId }
+  });
 
   return {
     type: 'FeatureCollection',
-    features: JSON.parse(geoJsonFeatures)
+    features: items.map(({ geoJsonFeature }) => ({
+      type: geoJsonFeature.M.type.S,
+      geometry: {
+        type: geoJsonFeature.M.geometry.M.type.S,
+        coordinates: geoJsonFeature.M.geometry.M.coordinates.NN
+      }
+    }))
   };
 };
