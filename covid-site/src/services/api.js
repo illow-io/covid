@@ -3,6 +3,7 @@ import qs from 'qs';
 import Config from '../Config';
 
 let token = localStorage.getItem('token');
+
 const getAuth = () => token && `Bearer ${token}`;
 
 const instance = axios.create({
@@ -47,7 +48,7 @@ export const authenticate = async accessToken => {
   token = accessToken;
   const { status } = await post('/users');
   if (status === 202) {
-    localStorage.setItem('token', token);
+    localStorage.setItem('token', accessToken);
   }
 };
 
