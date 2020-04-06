@@ -3,6 +3,7 @@ import fileUpload from 'express-fileupload';
 import config from '../../../config';
 import { users } from '../../../db/stores';
 import s3 from '../../../utils/s3';
+import { storeLocationHistory } from '../../../operations/locationHistory';
 
 const router = Router();
 router.use(
@@ -29,10 +30,13 @@ router.post('/', async (req, res) => {
     const ext = splittedName[splittedName.length - 1];
     await s3.putObject(`${file.md5}.${ext}`, { ContentMD5: checksum }, file.data);
     await users.appendValue(req.currentUser.id, 'dataHashes', file.md5);
+    if (ext === 'kml') {
+      await storeLocationHistory(req.currentUser.id, file.data.toString());
+    }
   });
   await Promise.all(promises);
 
-  res.json({ message: 'File uploaded!' });
+  res.json({ message: 'File(s) uploaded!' });
 });
 
 export default router;
