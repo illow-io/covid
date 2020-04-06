@@ -42,35 +42,21 @@ import { GeoStore } from './geoStorage';
  * @desc key: User ID created by Google Sign in
  */
 export const users = new Store('Users');
-export const usersLocationHistory = new Store('UsersLocationHistory', [
-  { KeyType: 'HASH', AttributeName: 'id' },
-  { KeyType: 'RANGE', AttributeName: 'timestamp' }
-], [
-  { AttributeName: 'id', AttributeType: 'S' },
-  { AttributeName: 'timestamp', AttributeType: 'N' }
-]);
-
-/**
-  KeySchema: [
-    { KeyType: 'HASH', AttributeName: 'hashKey' },
-    { KeyType: 'RANGE', AttributeName: 'rangeKey' }
-  ],
+export const usersLocationHistory = new GeoStore('UsersLocationHistory', {
   AttributeDefinitions: [
-    { AttributeName: 'hashKey', AttributeType: 'N' },
-    { AttributeName: 'rangeKey', AttributeType: 'S' },
-    { AttributeName: 'geohash', AttributeType: 'N' }
+    { AttributeName: 'userId', AttributeType: 'S' },
   ],
-  LocalSecondaryIndexes: [
-    {
-      IndexName: 'geohash-index',
-      KeySchema: [
-        { KeyType: 'HASH', AttributeName: 'hashKey' },
-        { KeyType: 'RANGE', AttributeName: 'geohash' }
-      ],
-      Projection: { ProjectionType: 'ALL' }
-    }
-  ]
- */
+  GlobalSecondaryIndexes: (params) => [{
+    IndexName: 'userId-geohash-index',
+    KeySchema: [
+      { KeyType: 'HASH', AttributeName: 'userId' },
+      { KeyType: 'RANGE', AttributeName: 'geohash' }
+    ],
+    Projection: { ProjectionType: 'ALL' },
+    ProvisionedThroughput: params.ProvisionedThroughput
+  }]
+});
+
 export const seedsLocationHistory = new GeoStore('SeedsLocationHistory');
 
 export const initStores = async () => {
