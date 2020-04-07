@@ -18,40 +18,6 @@ const tableExists = async (TableName) => {
   }
 };
 
-/**
- * ProvisionedThroughput: { ReadCapacityUnits: 10, WriteCapacityUnits: 5 }
- * KeySchema: [
- *   { KeyType: 'HASH', AttributeName: 'hashKey' },
- *   { KeyType: 'RANGE', AttributeName: 'rangeKey' }
- * ],
- * AttributeDefinitions: [
- *   { AttributeName: 'hashKey', AttributeType: 'N' },
- *   { AttributeName: 'rangeKey', AttributeType: 'S' },
- *   { AttributeName: 'geohash', AttributeType: 'N' },
- *   { AttributeName: 'userId', AttributeType: 'S' }
- * ],
- * LocalSecondaryIndexes: [
- *   {
- *     IndexName: 'geohash-index',
- *     KeySchema: [
- *       { KeyType: 'HASH', AttributeName: 'hashKey' },
- *       { KeyType: 'RANGE', AttributeName: 'geohash' }
- *     ],
- *     Projection: { ProjectionType: 'ALL' }
- *   }
- * ],
- * GlobalSecondaryIndexes: [
- *   {
- *     IndexName: 'userId-geohash-index',
- *     KeySchema: [
- *       { KeyType: 'HASH', AttributeName: 'userId' },
- *       { KeyType: 'RANGE', AttributeName: 'geohash' }
- *     ]
- *     Projection: { ProjectionType: 'ALL' }
- *     ProvisionedThroughput: { ReadCapacityUnits: 10, WriteCapacityUnits: 5 }
- *   }
- * ]
- */
 const createTable = async (
   config,
   { KeySchema = [], AttributeDefinitions = [], GlobalSecondaryIndexes = [] } = {}

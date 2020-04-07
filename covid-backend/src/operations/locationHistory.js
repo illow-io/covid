@@ -1,6 +1,6 @@
 import tj from '@mapbox/togeojson';
 import { DOMParser } from 'xmldom';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 
 import { usersLocationHistory } from '../db/stores';
 
