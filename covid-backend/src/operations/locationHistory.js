@@ -1,5 +1,6 @@
 import tj from '@mapbox/togeojson';
 import { DOMParser } from 'xmldom';
+import uuid from 'uuid/v4';
 
 import { usersLocationHistory } from '../db/stores';
 
@@ -8,17 +9,21 @@ export const storeLocationHistory = async (userId, kmlData) => {
   const converted = tj.kml(kml);
 
   const itemsToStore = converted.features.map(({ type, geometry, properties }) => {
+    const [longitude, latitude] = geometry.type === 'Point'
+      ? geometry.coordinates
+      : geometry.coordinates[0];
+
     return {
-      id: userId,
-      timestamp: Date.parse(properties.timespan.begin),
-      geoJsonFeature: {
-        M: {
-          type: { S: type },
-          geometry: {
-            M: {
-              type: { S: geometry.type },
-              coordinates: { NN: geometry.coordinates }
-            }
+      id: uuid(),
+      point: { latitude, longitude },
+      data: {
+        userId: { S: userId },
+        timestamp: { N: `${Date.parse(properties.timespan.begin)}` },
+        type: { S: type },
+        geometry: {
+          M: {
+            type: { S: geometry.type },
+            coordinates: { S: JSON.stringify(geometry.coordinates) }
           }
         }
       }
@@ -30,17 +35,18 @@ export const storeLocationHistory = async (userId, kmlData) => {
 
 export const fetchLocationHistory = async (userId) => {
   const { Items: items } = await usersLocationHistory.query({
-    KeyConditionExpression: 'id = :hkey',
-    ExpressionAttributeValues: { ':hkey': userId }
+    IndexName: 'userId-geohash-index',
+    KeyConditionExpression: 'userId = :hkey',
+    ExpressionAttributeValues: { ':hkey': { S: userId } }
   });
 
   return {
     type: 'FeatureCollection',
-    features: items.map(({ geoJsonFeature }) => ({
-      type: geoJsonFeature.M.type.S,
+    features: items.map(({ type, geometry }) => ({
+      type: type.S,
       geometry: {
-        type: geoJsonFeature.M.geometry.M.type.S,
-        coordinates: geoJsonFeature.M.geometry.M.coordinates.NN
+        type: geometry.M.type.S,
+        coordinates: JSON.parse(geometry.M.coordinates.S)
       }
     }))
   };

@@ -123,7 +123,11 @@ export class GeoStore {
     })
   )).promise()
 
-  query = async (params) => this.config.dynamoDBClient.query(params).promise()
+  query = async (params) => this.config.dynamoDBClient.query({
+    TableName: this.tableName,
+    ...params
+  }).promise();
+
 
   /**
    * @param {number} radius

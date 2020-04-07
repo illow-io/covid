@@ -44,7 +44,7 @@ import { GeoStore } from './geoStorage';
 export const users = new Store('Users');
 export const usersLocationHistory = new GeoStore('UsersLocationHistory', {
   AttributeDefinitions: [
-    { AttributeName: 'userId', AttributeType: 'S' },
+    { AttributeName: 'userId', AttributeType: 'S' }
   ],
   GlobalSecondaryIndexes: (params) => [{
     IndexName: 'userId-geohash-index',
