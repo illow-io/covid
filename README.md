@@ -16,14 +16,14 @@ Create a `development.json` file at `covid-backend` with all the configurations 
 
 ```
 cd covid-backend
-npm install
-npm start
+yarn install
+yarn start
 ```
 
 #### Frontend
 
 ```
 cd covid-site
-npm install
-npm start
+yarn install
+yarn start
 ```
