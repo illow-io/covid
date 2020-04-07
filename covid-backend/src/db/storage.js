@@ -110,6 +110,11 @@ export class Store {
     return docClient.batchWrite(params).promise();
   }
 
+  query = async (params) => docClient.query({
+    TableName: this.tableName,
+    ...params
+  }).promise();
+
   upsert = async (id, data) => {
     const filteredEntries = Object.entries(data).filter(
       ([key, value]) => key !== this.primaryKey && value !== null && value !== undefined

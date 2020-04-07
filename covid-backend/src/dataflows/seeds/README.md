@@ -12,8 +12,12 @@
 
 ```js
 function log(prom) { const start = Date.now(); return prom.then((res) => { console.log(`Finished in ${Date.now() - start}`); console.log(res); }).catch(console.log) }
-const { users, seedsLocationHistory } = require('./src/db/stores');
-let prom = log(seedsLocationHistory.queryRadius(1000, { latitude: -29.406763, longitude: -66.85239 }));
+const { users, usersLocationHistory, seedsLocationHistory } = require('./src/db/stores');
+let point = { longitude: -58.5452598, latitude: -34.4961459 };
+let prom = log(usersLocationHistory.queryRadius(100, point));
+
+point = { longitude: -66.85239, latitude: -29.406763 };
+prom = log(seedsLocationHistory.queryRadius(1000, point));
 ```
 
 The result will be printed

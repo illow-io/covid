@@ -1,27 +1,53 @@
 import tj from '@mapbox/togeojson';
 import { DOMParser } from 'xmldom';
+import { v4 as uuid } from 'uuid';
 
 import { usersLocationHistory } from '../db/stores';
-import { NotFoundError } from '../utils/errors';
-
-const NoLocationHistory = { geoJsonData: { S: null } };
 
 export const storeLocationHistory = async (userId, kmlData) => {
   const kml = (new DOMParser()).parseFromString(kmlData);
   const converted = tj.kml(kml);
 
-  return usersLocationHistory.store(userId, {
-    geoJsonFeatures: { S: JSON.stringify(converted.features) }
+  const itemsToStore = converted.features.map(({ type, geometry, properties }) => {
+    const [longitude, latitude] = geometry.type === 'Point'
+      ? geometry.coordinates
+      : geometry.coordinates[0];
+
+    return {
+      id: uuid(),
+      point: { latitude, longitude },
+      data: {
+        userId: { S: userId },
+        timestamp: { N: `${Date.parse(properties.timespan.begin)}` },
+        type: { S: type },
+        geometry: {
+          M: {
+            type: { S: geometry.type },
+            coordinates: { S: JSON.stringify(geometry.coordinates) }
+          }
+        }
+      }
+    };
   });
+
+  return usersLocationHistory.batchStore(itemsToStore);
 };
 
 export const fetchLocationHistory = async (userId) => {
-  const { Item: item = NoLocationHistory } = await usersLocationHistory.fetch(userId);
-  const { geoJsonFeatures: { S: geoJsonFeatures } } = item;
-  if (!geoJsonFeatures) throw new NotFoundError('No GeoJSON data found');
+  const { Items: items } = await usersLocationHistory.query({
+    IndexName: 'userId-geohash-index',
+    KeyConditionExpression: 'userId = :hkey',
+    ExpressionAttributeValues: { ':hkey': { S: userId } }
+  });
 
   return {
     type: 'FeatureCollection',
-    features: JSON.parse(geoJsonFeatures)
+    features: items.map(({ type, geometry }) => ({
+      type: type.S,
+      geometry: {
+        type: geometry.M.type.S,
+        coordinates: JSON.parse(geometry.M.coordinates.S)
+      }
+    }))
   };
 };

@@ -18,16 +18,36 @@ const tableExists = async (TableName) => {
   }
 };
 
-const createTable = async (config) => {
+const createTable = async (
+  config,
+  { KeySchema = [], AttributeDefinitions = [], GlobalSecondaryIndexes = [] } = {}
+) => {
   const createTableInput = DynamoDBGeo.GeoTableUtil.getCreateTableRequest(config);
+  if (!createTableInput.GlobalSecondaryIndexes && GlobalSecondaryIndexes.length > 0) {
+    createTableInput.GlobalSecondaryIndexes = [];
+  }
+
+  Object.entries({ 
+    KeySchema, 
+    AttributeDefinitions, 
+    GlobalSecondaryIndexes
+  }).forEach(([name, params]) => {
+    if (createTableInput[name] && params) {
+      const applyParams = typeof params === 'function' 
+        ? params(createTableInput)
+        : params;
+      applyParams.map(field => createTableInput[name].push(field));
+    }
+  })
   console.log('Creating table with schema:');
   console.dir(createTableInput, { depth: null });
   await dynamodb.createTable(createTableInput).promise();
 }
 
 export class GeoStore {
-  constructor(tableName) {
+  constructor(tableName, schema) {
     this.tableName = tableName;
+    this.schema = schema;
     this.config = new DynamoDBGeo.GeoDataManagerConfiguration(dynamodb, this.tableName);
     // @TODO: Read!
     // @see https://www.npmjs.com/package/dynamodb-geo#choosing-a-hashkeylength-optimising-for-performance-and-cost
@@ -38,7 +58,7 @@ export class GeoStore {
 
   init = async () => {
     if (!(await tableExists(this.tableName))) {
-      await createTable(this.config);
+      await createTable(this.config, this.schema);
     }
   };
 
@@ -69,7 +89,11 @@ export class GeoStore {
     })
   )).promise()
 
-  query = async (params) => this.config.dynamoDBClient.query(params).promise()
+  query = async (params) => this.config.dynamoDBClient.query({
+    TableName: this.tableName,
+    ...params
+  }).promise();
+
 
   /**
    * @param {number} radius

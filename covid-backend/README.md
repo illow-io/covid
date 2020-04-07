@@ -11,7 +11,7 @@ In the project directory, you can run:
 Runs the backend in the development mode.<br />
 
 ```bash
-$ curl localhost:6000/health
+$ curl localhost:9000/health
 ```
 
 ### `yarn build`
