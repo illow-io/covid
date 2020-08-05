@@ -24,7 +24,7 @@
     "dynamodb-geo": "0.4.0",
     "express": "4.17.1",
     "express-boom-v2": "4.2.2",
-    "express-fileupload": "1.1.6",
+    "express-fileupload": "1.1.9",
     "express-promise-router": "3.0.3",
     "google-auth-library": "5.10.1",
     "helmet": "3.21.3",
